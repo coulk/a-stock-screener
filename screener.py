@@ -546,13 +546,21 @@ def main():
             lst = json.load(f)
         spot = pd.DataFrame(lst)
         spot['code'] = spot['code'].astype(str).str.zfill(6)
-        spot['price'] = 0.0
-        spot['chg_pct'] = 0.0
-        spot['amount'] = 0.0
-        spot['mktcap'] = 0.0
+        for col in ['price', 'chg_pct', 'amount', 'mktcap']:
+            if col not in spot.columns:
+                spot[col] = 0.0
+        spot['price'] = pd.to_numeric(spot['price'], errors='coerce').fillna(0)
+        spot['chg_pct'] = pd.to_numeric(spot['chg_pct'], errors='coerce').fillna(0)
+        spot['amount'] = pd.to_numeric(spot['amount'], errors='coerce').fillna(0)
+        spot['mktcap'] = pd.to_numeric(spot['mktcap'], errors='coerce').fillna(0)
         cand = spot[spot['code'].map(is_mainboard) & ~spot['name'].map(is_st)].copy()
+        # 有市值数据则做粗筛压缩候选（加快拉K），无则全主板
+        if (cand['mktcap'] > 0).any():
+            cand = cand[(cand['mktcap'] >= args.min_market_cap) &
+                        (cand['amount'] >= args.min_amount) &
+                        (cand['chg_pct'].abs() <= MAX_CHG)]
         cand = cand.drop_duplicates(subset='code')
-        print(f'📋 静态列表 {len(spot)} 只 -> 主板+非ST 候选 {len(cand)} 只（跳过市值粗筛）')
+        print(f'📋 静态列表 {len(spot)} 只 -> 主板+市值/成交额粗筛后候选 {len(cand)} 只')
     else:
         print('⏳ 拉取全市场快照...')
         spot = get_spot_df()
@@ -642,14 +650,55 @@ def main():
 
     results.sort(key=lambda x: (x['is_first'], x['slope_ma20']), reverse=True)
 
-    # 6) 输出 data.json
+    # 6) 增量对比：与上次结果比较，标记 status（new=新增 / kept=持续 / broken=趋势破坏）
+    history_path = os.path.join(os.path.dirname(os.path.abspath(args.out)), 'history.json')
+    prev = {}
+    prev_codes = set()
+    prev_by_code = {}
+    if os.path.isfile(history_path):
+        try:
+            with open(history_path, encoding='utf-8') as f:
+                prev = json.load(f)
+            prev_codes = {r['code'] for r in prev.get('results', [])}
+            prev_by_code = {r['code']: r for r in prev.get('results', [])}
+        except Exception:
+            prev = {}
+    cur_codes = {r['code'] for r in results}
+
+    now = pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
+    for r in results:
+        if r['code'] not in prev_codes:
+            r['status'] = 'new'          # 新增
+        else:
+            r['status'] = 'kept'         # 持续
+    # 趋势破坏：上次命中、本次不再命中（或本次判定失效）
+    broken = []
+    for code, pr in prev_by_code.items():
+        if code not in cur_codes:
+            broken.append({
+                'code': code,
+                'name': pr.get('name', ''),
+                'status': 'broken',
+                'last_price': pr.get('price'),
+                'last_slope': pr.get('slope_ma20'),
+                'last_date': pr.get('pullback_date', ''),
+                'last_seen': prev.get('generated_at', ''),
+            })
+    # 新增/破坏计数
+    n_new = sum(1 for r in results if r['status'] == 'new')
+    n_broken = len(broken)
+
+    # 7) 输出 data.json（含增量标记）
     data = {
-        'generated_at': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'generated_at': now,
         'market': '沪深主板',
         'total_spot': int(len(spot)),
         'candidates': int(len(cand)),
         'kline_ok': int(ok_cnt),
         'matched': len(results),
+        'new_count': n_new,
+        'broken_count': n_broken,
+        'prev_date': prev.get('generated_at', ''),
         'params': {
             'min_amount': args.min_amount,
             'min_market_cap': args.min_market_cap,
@@ -659,10 +708,14 @@ def main():
         },
         'sector_resonance': resonance_map,
         'results': results,
+        'broken': broken,
     }
     with open(args.out, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f'\n💾 已保存: {args.out} | 命中 {len(results)} 只')
+    # 保存本次结果到 history.json（供下次对比）
+    with open(history_path, 'w', encoding='utf-8') as f:
+        json.dump({'generated_at': now, 'results': results}, f, ensure_ascii=False)
+    print(f'\n💾 已保存: {args.out} | 命中 {len(results)} 只 | ➕新增 {n_new} | ➖趋势破坏 {n_broken}')
 
     # 控制台摘要
     if results:

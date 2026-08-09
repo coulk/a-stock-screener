@@ -43,6 +43,16 @@
   .sort-ind { color: var(--accent); }
   .up-arrow::after { content: " ▲"; color: var(--accent); }
   .down-arrow::after { content: " ▼"; color: var(--accent); }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; }
+  .panel-title { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+  #changes { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 16px; font-size: 12px; border: 1px solid var(--border); }
+  .chip.new { background: rgba(239,68,68,.12); color: #f87171; border-color: rgba(239,68,68,.4); }
+  .chip.broken { background: rgba(34,197,94,.12); color: #4ade80; border-color: rgba(34,197,94,.4); }
+  .chip b { font-weight: 700; }
+  .tag.status-new { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.4); }
+  .tag.status-kept { background: rgba(148,163,184,.12); color: #94a3b8; border: 1px solid rgba(148,163,184,.3); }
+  .tag.status-broken { background: rgba(34,197,94,.15); color: #4ade80; border: 1px solid rgba(34,197,94,.4); }
 </style>
 </head>
 <body>
@@ -54,6 +64,11 @@
 
   <div class="stats" id="stats"></div>
 
+  <div class="panel" id="panel">
+    <div class="panel-title">📣 今日变化</div>
+    <div id="changes"></div>
+  </div>
+
   <div class="controls">
     <input type="text" id="search" placeholder="搜索代码/名称/板块...">
     <select id="firstFilter">
@@ -64,6 +79,12 @@
     <select id="resoFilter">
       <option value="">全部</option>
       <option value="yes">仅板块共振</option>
+    </select>
+    <select id="statusFilter">
+      <option value="">全部状态</option>
+      <option value="new">➕ 新增</option>
+      <option value="kept">持续</option>
+      <option value="broken">➖ 趋势破坏</option>
     </select>
     <span class="meta" id="count"></span>
   </div>
@@ -84,6 +105,7 @@ const COLS = [
   { key: 'code', label: '代码', sort: 'str' },
   { key: 'name', label: '名称', sort: 'str' },
   { key: 'sector', label: '板块', sort: 'str' },
+  { key: 'status', label: '状态', sort: 'str' },
   { key: 'price', label: '现价', sort: 'num' },
   { key: 'dist_ma20', label: '距MA20%', sort: 'num' },
   { key: 'slope_ma20', label: 'MA20斜率%', sort: 'num' },
@@ -123,17 +145,33 @@ function renderStats() {
   const r = data.results || [];
   const first = r.filter(x => x.is_first).length;
   const reso = r.filter(x => x.resonance).length;
+  const nNew = data.new_count ?? r.filter(x => x.status === 'new').length;
+  const nBroken = data.broken_count ?? (data.broken || []).length;
   document.getElementById('stats').innerHTML = `
     <div class="stat"><b>${r.length}</b><span>命中总数</span></div>
+    <div class="stat"><b style="color:#f87171">+${nNew}</b><span>今日新增</span></div>
+    <div class="stat"><b style="color:#4ade80">-${nBroken}</b><span>趋势破坏</span></div>
     <div class="stat"><b>${first}</b><span>第一次回踩</span></div>
     <div class="stat"><b>${reso}</b><span>板块共振</span></div>
-    <div class="stat"><b>${data.candidates ?? '-'}</b><span>粗筛候选</span></div>
-    <div class="stat"><b>${data.total_spot ?? '-'}</b><span>全市场</span></div>
   `;
   document.getElementById('meta').textContent =
-    `生成时间：${data.generated_at ?? '-'} ｜ 数据源：多源降级(Yahoo/新浪/腾讯/东财)`;
+    `生成时间：${data.generated_at ?? '-'} ｜ 上次：${data.prev_date || '-'} ｜ 数据源：quotes.sina.cn + Yahoo`;
   document.getElementById('foot').textContent =
-    `筛选规则：MA20向上或刚拐头 ＋ 近3日回踩20日线附近 ＋ 收盘确认收回MA20上方 ＋ 回踩日缩量(<5日均量×80%) ＋ 板块共振加分。⚠️ 本页面为技术面初筛结果，非投资建议。`;
+    `筛选规则：MA20向上或刚拐头 ＋ 近3日回踩20日线附近 ＋ 收盘确认收回MA20上方 ＋ 回踩日缩量(<5日均量×80%) ＋ 板块共振加分。` +
+    `➕新增=今日新命中；➖趋势破坏=上次命中今日失效。⚠️ 技术面初筛，非投资建议。`;
+  renderChanges();
+}
+
+function renderChanges() {
+  const box = document.getElementById('changes');
+  const r = data.results || [];
+  const broken = data.broken || [];
+  if (!r.length && !broken.length) { box.innerHTML = '<span class="meta">暂无变化数据</span>'; return; }
+  const newChips = r.filter(x => x.status === 'new').map(x =>
+    `<span class="chip new">➕ <b>${x.code}</b> ${x.name || ''}</span>`).join('');
+  const brokenChips = broken.map(b =>
+    `<span class="chip broken">➖ <b>${b.code}</b> ${b.name || ''}（${(b.last_date || '').slice(5)}）</span>`).join('');
+  box.innerHTML = (newChips || '<span class="meta">无新增</span>') + ' &nbsp; ' + (brokenChips || '<span class="meta">无破坏</span>');
 }
 
 function setSort(key) {
@@ -148,10 +186,25 @@ function filterRows() {
   const q = document.getElementById('search').value.trim().toLowerCase();
   const f1 = document.getElementById('firstFilter').value;
   const f2 = document.getElementById('resoFilter').value;
-  return (data.results || []).filter(x => {
+  const f3 = document.getElementById('statusFilter').value;
+  const brokenCodes = new Set((data.broken || []).map(b => String(b.code)));
+  const rows = (data.results || []).map(x => ({ ...x, status: x.status || 'kept' }));
+  // 合并 broken 记录为虚拟行（status=broken）
+  (data.broken || []).forEach(b => {
+    if (!rows.some(r => String(r.code) === String(b.code))) {
+      rows.push({
+        code: b.code, name: b.name || '', sector: b.sector || '',
+        status: 'broken', price: b.last_price, dist_ma20: null,
+        slope_ma20: b.last_slope, vol_ratio: null,
+        pullback_date: b.last_date, is_first: false, resonance: false, score: null,
+      });
+    }
+  });
+  return rows.filter(x => {
     if (f1 === 'first' && !x.is_first) return false;
     if (f1 === 'nonfirst' && x.is_first) return false;
     if (f2 === 'yes' && !x.resonance) return false;
+    if (f3 && x.status !== f3) return false;
     if (q && !(String(x.code).includes(q) || String(x.name).toLowerCase().includes(q) || String(x.sector || '').toLowerCase().includes(q))) return false;
     return true;
   });
@@ -172,11 +225,14 @@ function render() {
   const sorted = [...rows].sort((a, b) => {
     let va = a[sortKey], vb = b[sortKey];
     if (sortKey === 'is_first' || sortKey === 'resonance') { va = va ? 1 : 0; vb = vb ? 1 : 0; }
+    else if (sortKey === 'status') { const o = {new: 0, kept: 1, broken: 2}; va = o[a.status] ?? 3; vb = o[b.status] ?? 3; }
     else if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
     if (va < vb) return -1 * sortDir;
     if (va > vb) return 1 * sortDir;
     return 0;
   });
+
+  const statusLabel = { new: '<span class="tag status-new">➕新增</span>', kept: '<span class="tag status-kept">持续</span>', broken: '<span class="tag status-broken">➖破坏</span>' };
 
   tbody.innerHTML = sorted.map(x => {
     const up = x.dist_ma20 >= 0, distCls = up ? 'up' : 'down';
@@ -185,6 +241,7 @@ function render() {
     return `<tr>
       <td>${x.code}</td><td>${x.name || ''}</td>
       <td>${x.sector ? `<span class="tag sector">${x.sector}</span>` : '-'}</td>
+      <td>${statusLabel[x.status] || '-'}</td>
       <td>${fmtNum(x.price)}</td>
       <td class="${distCls}">${fmtNum(x.dist_ma20)}%</td>
       <td class="${slopeCls}">${fmtNum(x.slope_ma20)}%</td>

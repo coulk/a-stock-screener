@@ -9,3 +9,8 @@ run_err.txt
 gen_sample.py
 opt_run.txt
 run_full*.txt
+
+*.txt
+!requirements.txt
+!README.md
+!stock_list.json
