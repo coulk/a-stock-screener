@@ -27,39 +27,9 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: 诊断海外数据源连通性
-        run: |
-          echo "== 东财 clist (curl) =="
-          curl -s --max-time 10 -o /tmp/em.json -w "http=%{http_code} size=%{size_download}\n" \
-            "https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=5&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fields=f12,f13,f14" \
-            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" || echo "curl failed rc=$?"
-          head -c 200 /tmp/em.json 2>/dev/null; echo
-          echo "== 东财 code_name (akshare) =="
-          python - <<'EOF'
-          import os
-          for k in ['http_proxy','https_proxy','HTTP_PROXY','HTTPS_PROXY']: os.environ.pop(k, None)
-          os.environ['NO_PROXY']='*'
-          import akshare as ak
-          try:
-              df = ak.stock_info_a_code_name()
-              print("akshare code_name OK rows=", len(df))
-          except Exception as e:
-              print("akshare code_name FAIL:", type(e).__name__, str(e)[:100])
-          EOF
-          echo "== quotes.sina.cn K线 =="
-          curl -s --max-time 10 -o /tmp/sina.json -w "http=%{http_code} size=%{size_download}\n" \
-            "https://quotes.sina.cn/cn/api/jsonp_v2.php/var%20_=/CN_MarketDataService.getKLineData?symbol=sh600756&scale=240&ma=no&datalen=5" \
-            -H "User-Agent: Mozilla/5.0" || echo "curl failed rc=$?"
-          head -c 200 /tmp/sina.json 2>/dev/null; echo
-          echo "== Yahoo chart =="
-          curl -s --max-time 10 -o /tmp/yh.json -w "http=%{http_code} size=%{size_download}\n" \
-            "https://query1.finance.yahoo.com/v8/finance/chart/600756.SS?range=5d&interval=1d" \
-            -H "User-Agent: Mozilla/5.0" || echo "curl failed rc=$?"
-          head -c 200 /tmp/yh.json 2>/dev/null; echo
-
       - name: 运行筛选脚本（静态列表模式，海外环境）
         run: |
-          python screener.py --static-list stock_list.json --out data.json
+          python screener.py --static-list stock_list.json --no-sector --out data.json
         env:
           PYTHONIOENCODING: utf-8
 

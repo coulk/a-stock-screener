@@ -52,15 +52,15 @@ except Exception:
     fhf = None
 
 # ---------------- 参数 ----------------
-KLINE_DAYS = 150          # 拉取K线数量（约130交易日）
+KLINE_DAYS = 90           # 拉取K线数量（约90交易日，MA20+斜率+拐点判定足够）
 MIN_AMOUNT = 2e8          # 粗筛：日成交额 >= 2亿（排除流动性差）
 MIN_MARKET_CAP = 5e9      # 粗筛：总市值 >= 50亿（排除仙股，回踩体系偏活跃票）
 MAX_CHG = 9.8             # 粗筛：当日涨跌幅绝对值上限（排除涨停/跌停无法交易）
 TOUCH_PCT = 0.05          # 回踩触及容差：最低价 <= MA20*(1+5%)
 VOL_RATIO = 0.80          # 缩量阈值：回踩日量 < 前5日均量*80%
 SLOPE_DAYS = 5            # MA20 斜率窗口
-MAX_WORKERS = 4           # 并发数（避免上游风控）
-REQUEST_GAP = 0.5         # 每请求最小间隔秒数（Yahoo 建议 1-2 req/s，全局节流）
+MAX_WORKERS = 8           # 并发数（quotes.sina.cn 响应快，可承受更高并发）
+REQUEST_GAP = 0.25        # 每请求最小间隔秒数（quotes.sina.cn 快，0.25s 足够）
 
 MAINBOARD_PREFIXES = ('600', '601', '603', '605', '000', '001', '002', '003')
 _UA = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
@@ -282,7 +282,7 @@ def fetch_kline_yahoo(code):
     symbol = f"{c}.SS" if c.startswith('6') else f"{c}.SZ"
     url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?range=6mo&interval=1d"
     try:
-        r = requests.get(url, headers=_UA, timeout=15)
+        r = requests.get(url, headers=_UA, timeout=5)
         r.raise_for_status()
         j = r.json()
         res = j['chart']['result'][0]
@@ -309,7 +309,7 @@ def fetch_kline_sina_direct(code):
     url = ("https://quotes.sina.cn/cn/api/jsonp_v2.php/var%20_=/CN_MarketDataService.getKLineData"
            f"?symbol={symbol}&scale=240&ma=no&datalen={KLINE_DAYS}")
     try:
-        r = requests.get(url, headers={**_UA, 'Referer': 'https://finance.sina.com.cn/'}, timeout=12)
+        r = requests.get(url, headers={**_UA, 'Referer': 'https://finance.sina.com.cn/'}, timeout=6)
         r.raise_for_status()
         text = r.text
         start = text.find('([')
@@ -342,18 +342,22 @@ def _get_session():
     return s
 
 
-def fetch_kline(code):
-    """多源降级拉日K：Yahoo -> quotes.sina.cn -> fhf 多源 -> akshare 东财"""
+def fetch_kline(code, fast=False):
+    """多源降级拉日K。
+    fast=True（静态列表/Actions 模式）：仅 quotes.sina.cn + Yahoo，失败快速放弃；
+    fast=False（本地调试）：完整降级链 sina→Yahoo→fhf→akshare"""
     c = str(code).zfill(6)
-    # 1) Yahoo（海外）
-    df = fetch_kline_yahoo(c)
-    if df is not None:
-        return df
-    # 2) quotes.sina.cn（大陆）
+    # 1) quotes.sina.cn（大陆/海外均可用，最快）
     df = fetch_kline_sina_direct(c)
     if df is not None:
         return df
-    # 3) fhf 多源
+    # 2) Yahoo（海外可用；大陆被墙会快速超时）
+    df = fetch_kline_yahoo(c)
+    if df is not None:
+        return df
+    if fast:
+        return None
+    # 3) fhf 多源（腾讯→新浪→雪球→东财）
     if fhf is not None:
         try:
             session = _get_session()
@@ -522,6 +526,8 @@ def main():
                         help='静态代码列表文件（Actions 海外环境用，跳过联网快照）')
     parser.add_argument('--no-static', action='store_true',
                         help='强制联网获取全市场快照（本地大陆环境）')
+    parser.add_argument('--no-sector', action='store_true',
+                        help='跳过板块映射（Actions 海外板块源不可用，加速）')
     args = parser.parse_args()
 
     print('=' * 72)
@@ -566,14 +572,20 @@ def main():
         cand = cand.drop_duplicates(subset='code')
         print(f'📊 全市场 {len(spot)} 只 -> 主板+粗筛后候选 {len(cand)} 只')
 
-    # 2) 板块映射
+    # 2) 板块映射（--no-sector 跳过；海外环境板块源不可用）
     print('⏳ 构建板块映射...')
-    sector_map = get_sector_map(cand['code'])
-    print(f'  板块映射命中 {len(sector_map)} 只')
-    sector_ok = len(sector_map) > 0
+    if args.no_sector:
+        sector_map = {}
+        sector_ok = False
+        print('  (跳过板块映射 --no-sector)')
+    else:
+        sector_map = get_sector_map(cand['code'])
+        print(f'  板块映射命中 {len(sector_map)} 只')
+        sector_ok = len(sector_map) > 0
 
-    # 3) 并发拉日K
-    print(f'⏳ 拉取日K（并发 {args.max_workers}，多源降级）...')
+    # 3) 并发拉日K（fast 模式：静态列表/Actions 仅用 sina+Yahoo 快速源）
+    fast_mode = (not args.no_static) or bool(args.candidates)
+    print(f'⏳ 拉取日K（并发 {args.max_workers}，{"快速双源" if fast_mode else "完整多源降级"}）...')
     klines = {}
     done = 0
     gap_lock = threading.Lock()
@@ -585,7 +597,7 @@ def main():
             if wait > 0:
                 time.sleep(wait)
             last_req[0] = time.time()
-        return fetch_kline(code)
+        return fetch_kline(code, fast=fast_mode)
 
     with ThreadPoolExecutor(max_workers=args.max_workers) as ex:
         futs = {ex.submit(_throttled_fetch, c): c for c in cand['code']}
