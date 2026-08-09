@@ -518,19 +518,35 @@ def main():
     parser.add_argument('--out', default='data.json')
     parser.add_argument('--candidates', default='',
                         help='指定候选代码（逗号分隔），跳过全市场快照粗筛（测试用）')
+    parser.add_argument('--static-list', default='stock_list.json',
+                        help='静态代码列表文件（Actions 海外环境用，跳过联网快照）')
+    parser.add_argument('--no-static', action='store_true',
+                        help='强制联网获取全市场快照（本地大陆环境）')
     args = parser.parse_args()
 
     print('=' * 72)
     print('  A股 20 日线回踩选股（全市场沪深主板）')
     print('=' * 72)
 
-    # 1) 股票池：--candidates 测试模式 或 全市场快照粗筛
+    # 1) 股票池：--candidates 测试模式 或 静态列表 或 全市场快照粗筛
     if args.candidates:
         codes = [c.strip().zfill(6) for c in args.candidates.split(',') if c.strip()]
         spot = pd.DataFrame({'code': codes, 'name': codes, 'price': 0.0,
                              'chg_pct': 0.0, 'amount': 0.0, 'mktcap': 0.0})
         cand = spot
         print(f'🧪 测试模式：指定 {len(codes)} 只候选')
+    elif (not args.no_static) and os.path.isfile(args.static_list):
+        with open(args.static_list, encoding='utf-8') as f:
+            lst = json.load(f)
+        spot = pd.DataFrame(lst)
+        spot['code'] = spot['code'].astype(str).str.zfill(6)
+        spot['price'] = 0.0
+        spot['chg_pct'] = 0.0
+        spot['amount'] = 0.0
+        spot['mktcap'] = 0.0
+        cand = spot[spot['code'].map(is_mainboard) & ~spot['name'].map(is_st)].copy()
+        cand = cand.drop_duplicates(subset='code')
+        print(f'📋 静态列表 {len(spot)} 只 -> 主板+非ST 候选 {len(cand)} 只（跳过市值粗筛）')
     else:
         print('⏳ 拉取全市场快照...')
         spot = get_spot_df()

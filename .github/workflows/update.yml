@@ -57,9 +57,9 @@ jobs:
             -H "User-Agent: Mozilla/5.0" || echo "curl failed rc=$?"
           head -c 200 /tmp/yh.json 2>/dev/null; echo
 
-      - name: 运行筛选脚本
+      - name: 运行筛选脚本（静态列表模式，海外环境）
         run: |
-          python screener.py --out data.json
+          python screener.py --static-list stock_list.json --out data.json
         env:
           PYTHONIOENCODING: utf-8
 

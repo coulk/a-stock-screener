@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-09 23:34:54",
+  "generated_at": "2026-08-09 23:47:12",
   "market": "沪深主板",
-  "total_spot": 6,
-  "candidates": 6,
-  "kline_ok": 6,
-  "matched": 6,
+  "total_spot": 3,
+  "candidates": 3,
+  "kline_ok": 3,
+  "matched": 3,
   "params": {
     "min_amount": 200000000.0,
     "min_market_cap": 5000000000.0,
@@ -45,21 +45,6 @@
       "score": 62.0
     },
     {
-      "code": "002115",
-      "name": "002115",
-      "price": 11.93,
-      "ma20": 11.14,
-      "dist_ma20": 7.1,
-      "slope_ma20": 3.57,
-      "pullback_date": "2026-08-07",
-      "vol_ratio": 0.78,
-      "is_first": true,
-      "is_turn": false,
-      "sector": "new_dzxx",
-      "resonance": false,
-      "score": 60.6
-    },
-    {
       "code": "002218",
       "name": "002218",
       "price": 4.1,
@@ -73,36 +58,6 @@
       "sector": "new_dzqj",
       "resonance": false,
       "score": 66.3
-    },
-    {
-      "code": "000948",
-      "name": "000948",
-      "price": 14.8,
-      "ma20": 14.35,
-      "dist_ma20": 3.11,
-      "slope_ma20": 4.65,
-      "pullback_date": "2026-08-07",
-      "vol_ratio": 0.63,
-      "is_first": false,
-      "is_turn": false,
-      "sector": "new_dzxx",
-      "resonance": false,
-      "score": 37.0
-    },
-    {
-      "code": "600602",
-      "name": "600602",
-      "price": 17.93,
-      "ma20": 17.93,
-      "dist_ma20": 0.01,
-      "slope_ma20": 2.82,
-      "pullback_date": "2026-08-07",
-      "vol_ratio": 0.72,
-      "is_first": false,
-      "is_turn": false,
-      "sector": "new_dzqj",
-      "resonance": false,
-      "score": 35.6
     }
   ]
 }
