@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+diag_*.py
+spot_cols.txt
+qq_check.txt
+run_out.txt
+run_err.txt
+gen_sample.py

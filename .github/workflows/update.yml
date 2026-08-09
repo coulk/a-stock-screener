@@ -1,0 +1,51 @@
+name: 每日A股20日线回踩筛选
+
+on:
+  schedule:
+    # 北京时间 15:30 = UTC 07:30（周一至周五）
+    - cron: '30 7 * * 1-5'
+  workflow_dispatch:        # 支持手动触发
+
+permissions:
+  contents: write           # 允许提交更新后的 data.json
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 安装依赖
+        run: |
+          pip install -r requirements.txt
+
+      - name: 运行筛选脚本
+        run: |
+          python screener.py --out data.json
+        env:
+          PYTHONIOENCODING: utf-8
+
+      - name: 检查结果是否生成
+        run: |
+          test -f data.json && echo "data.json 已生成"
+          python - <<'EOF'
+          import json
+          d = json.load(open('data.json', encoding='utf-8'))
+          print(f"命中 {d['matched']} 只，候选 {d['candidates']} 只，K线成功 {d['kline_ok']}/{d['candidates']}")
+          EOF
+
+      - name: 提交更新（如有变化）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "每日更新：$(date +'%Y-%m-%d') A股20日线回踩筛选"
+          git push

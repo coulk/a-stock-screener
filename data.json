@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-08-09 15:35:00",
+  "market": "沪深主板",
+  "total_spot": 5539,
+  "candidates": 486,
+  "kline_ok": 482,
+  "matched": 7,
+  "params": {
+    "min_amount": 200000000.0,
+    "min_market_cap": 5000000000.0,
+    "touch_pct": 0.05,
+    "vol_ratio": 0.8,
+    "slope_days": 5
+  },
+  "sector_resonance": {
+    "电子器件": {
+      "ok": true,
+      "slope": 1.5,
+      "dist": 3.93
+    }
+  },
+  "results": [
+    {
+      "code": "600756",
+      "name": "浪潮软件",
+      "sector": "电子信息",
+      "price": 15.56,
+      "ma20": 15.04,
+      "dist_ma20": 3.47,
+      "slope_ma20": 5.46,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.62,
+      "is_first": true,
+      "resonance": false,
+      "score": 66.9
+    },
+    {
+      "code": "002410",
+      "name": "广联达",
+      "sector": "电子信息",
+      "price": 9.39,
+      "ma20": 8.99,
+      "dist_ma20": 4.47,
+      "slope_ma20": 4.08,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.75,
+      "is_first": true,
+      "resonance": false,
+      "score": 62.0
+    },
+    {
+      "code": "002218",
+      "name": "拓日新能",
+      "sector": "电子器件",
+      "price": 4.1,
+      "ma20": 3.85,
+      "dist_ma20": 6.6,
+      "slope_ma20": 3.36,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.59,
+      "is_first": true,
+      "resonance": true,
+      "score": 76.3
+    },
+    {
+      "code": "000058",
+      "name": "深赛格",
+      "sector": "电子器件",
+      "price": 6.67,
+      "ma20": 6.37,
+      "dist_ma20": 4.64,
+      "slope_ma20": 3.29,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.65,
+      "is_first": true,
+      "resonance": true,
+      "score": 74.9
+    },
+    {
+      "code": "600570",
+      "name": "恒生电子",
+      "sector": "电子信息",
+      "price": 22.77,
+      "ma20": 21.7,
+      "dist_ma20": 4.94,
+      "slope_ma20": 2.62,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.77,
+      "is_first": true,
+      "resonance": false,
+      "score": 57.2
+    },
+    {
+      "code": "600602",
+      "name": "云赛智联",
+      "sector": "电子器件",
+      "price": 17.93,
+      "ma20": 17.93,
+      "dist_ma20": 0.01,
+      "slope_ma20": 2.82,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.72,
+      "is_first": false,
+      "resonance": true,
+      "score": 45.6
+    },
+    {
+      "code": "000948",
+      "name": "南天信息",
+      "sector": "电子信息",
+      "price": 14.8,
+      "ma20": 14.35,
+      "dist_ma20": 3.11,
+      "slope_ma20": 4.65,
+      "pullback_date": "2026-08-07",
+      "vol_ratio": 0.63,
+      "is_first": false,
+      "resonance": false,
+      "score": 37.0
+    }
+  ]
+}
