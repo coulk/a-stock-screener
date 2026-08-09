@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-10 00:48:10",
+  "generated_at": "2026-08-09 16:54:30",
   "market": "沪深主板",
   "total_spot": 5539,
   "candidates": 1056,
   "kline_ok": 1055,
   "matched": 106,
-  "new_count": 106,
+  "new_count": 0,
   "broken_count": 0,
-  "prev_date": "",
+  "prev_date": "2026-08-10 00:48:10",
   "params": {
     "min_amount": 200000000.0,
     "min_market_cap": 5000000000.0,
@@ -31,7 +31,7 @@
       "sector": "",
       "resonance": false,
       "score": 60.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600756",
@@ -47,7 +47,7 @@
       "sector": "",
       "resonance": false,
       "score": 66.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601606",
@@ -63,7 +63,7 @@
       "sector": "",
       "resonance": false,
       "score": 60.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600415",
@@ -79,7 +79,7 @@
       "sector": "",
       "resonance": false,
       "score": 60.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000037",
@@ -95,7 +95,7 @@
       "sector": "",
       "resonance": false,
       "score": 61.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600403",
@@ -111,7 +111,7 @@
       "sector": "",
       "resonance": false,
       "score": 62.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002532",
@@ -127,7 +127,7 @@
       "sector": "",
       "resonance": false,
       "score": 62.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002410",
@@ -143,7 +143,7 @@
       "sector": "",
       "resonance": false,
       "score": 62.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002498",
@@ -159,7 +159,7 @@
       "sector": "",
       "resonance": false,
       "score": 66.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002891",
@@ -175,7 +175,7 @@
       "sector": "",
       "resonance": false,
       "score": 64.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000729",
@@ -191,7 +191,7 @@
       "sector": "",
       "resonance": false,
       "score": 65.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000423",
@@ -207,7 +207,7 @@
       "sector": "",
       "resonance": false,
       "score": 65.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002115",
@@ -223,7 +223,7 @@
       "sector": "",
       "resonance": false,
       "score": 60.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603129",
@@ -239,7 +239,7 @@
       "sector": "",
       "resonance": false,
       "score": 64.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002092",
@@ -255,7 +255,7 @@
       "sector": "",
       "resonance": false,
       "score": 65.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000400",
@@ -271,7 +271,7 @@
       "sector": "",
       "resonance": false,
       "score": 69.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000582",
@@ -287,7 +287,7 @@
       "sector": "",
       "resonance": false,
       "score": 62.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600126",
@@ -303,7 +303,7 @@
       "sector": "",
       "resonance": false,
       "score": 63.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002606",
@@ -319,7 +319,7 @@
       "sector": "",
       "resonance": false,
       "score": 65.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601728",
@@ -335,7 +335,7 @@
       "sector": "",
       "resonance": false,
       "score": 64.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002966",
@@ -351,7 +351,7 @@
       "sector": "",
       "resonance": false,
       "score": 65.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600298",
@@ -367,7 +367,7 @@
       "sector": "",
       "resonance": false,
       "score": 65.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601360",
@@ -383,7 +383,7 @@
       "sector": "",
       "resonance": false,
       "score": 59.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600066",
@@ -399,7 +399,7 @@
       "sector": "",
       "resonance": false,
       "score": 70.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600550",
@@ -415,7 +415,7 @@
       "sector": "",
       "resonance": false,
       "score": 61.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002229",
@@ -431,7 +431,7 @@
       "sector": "",
       "resonance": false,
       "score": 61.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002270",
@@ -447,7 +447,7 @@
       "sector": "",
       "resonance": false,
       "score": 61.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600570",
@@ -463,7 +463,7 @@
       "sector": "",
       "resonance": false,
       "score": 57.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601919",
@@ -479,7 +479,7 @@
       "sector": "",
       "resonance": false,
       "score": 59.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600519",
@@ -495,7 +495,7 @@
       "sector": "",
       "resonance": false,
       "score": 64.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601717",
@@ -511,7 +511,7 @@
       "sector": "",
       "resonance": false,
       "score": 61.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600690",
@@ -527,7 +527,7 @@
       "sector": "",
       "resonance": false,
       "score": 63.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601816",
@@ -543,7 +543,7 @@
       "sector": "",
       "resonance": false,
       "score": 60.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600406",
@@ -559,7 +559,7 @@
       "sector": "",
       "resonance": false,
       "score": 59.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002265",
@@ -575,7 +575,7 @@
       "sector": "",
       "resonance": false,
       "score": 59.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600486",
@@ -591,7 +591,7 @@
       "sector": "",
       "resonance": false,
       "score": 55.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603881",
@@ -607,7 +607,7 @@
       "sector": "",
       "resonance": false,
       "score": 57.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601825",
@@ -623,7 +623,7 @@
       "sector": "",
       "resonance": false,
       "score": 58.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601318",
@@ -639,7 +639,7 @@
       "sector": "",
       "resonance": false,
       "score": 62.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002251",
@@ -655,7 +655,7 @@
       "sector": "",
       "resonance": false,
       "score": 54.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603327",
@@ -671,7 +671,7 @@
       "sector": "",
       "resonance": false,
       "score": 55.5,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002015",
@@ -687,7 +687,7 @@
       "sector": "",
       "resonance": false,
       "score": 56.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600941",
@@ -703,7 +703,7 @@
       "sector": "",
       "resonance": false,
       "score": 57.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000001",
@@ -719,7 +719,7 @@
       "sector": "",
       "resonance": false,
       "score": 58.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601997",
@@ -735,7 +735,7 @@
       "sector": "",
       "resonance": false,
       "score": 58.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601166",
@@ -751,7 +751,7 @@
       "sector": "",
       "resonance": false,
       "score": 59.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002065",
@@ -767,7 +767,7 @@
       "sector": "",
       "resonance": false,
       "score": 50.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002074",
@@ -783,7 +783,7 @@
       "sector": "",
       "resonance": false,
       "score": 51.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600967",
@@ -799,7 +799,7 @@
       "sector": "",
       "resonance": false,
       "score": 50.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000683",
@@ -815,7 +815,7 @@
       "sector": "",
       "resonance": false,
       "score": 51.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603444",
@@ -831,7 +831,7 @@
       "sector": "",
       "resonance": false,
       "score": 52.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000039",
@@ -847,7 +847,7 @@
       "sector": "",
       "resonance": false,
       "score": 49.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002044",
@@ -863,7 +863,7 @@
       "sector": "",
       "resonance": false,
       "score": 50.5,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600850",
@@ -879,7 +879,7 @@
       "sector": "",
       "resonance": false,
       "score": 49.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601615",
@@ -895,7 +895,7 @@
       "sector": "",
       "resonance": false,
       "score": 48.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000921",
@@ -911,7 +911,7 @@
       "sector": "",
       "resonance": false,
       "score": 50.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601933",
@@ -927,7 +927,7 @@
       "sector": "",
       "resonance": false,
       "score": 51.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000830",
@@ -943,7 +943,7 @@
       "sector": "",
       "resonance": false,
       "score": 48.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600926",
@@ -959,7 +959,7 @@
       "sector": "",
       "resonance": false,
       "score": 50.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002555",
@@ -975,7 +975,7 @@
       "sector": "",
       "resonance": false,
       "score": 51.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002230",
@@ -991,7 +991,7 @@
       "sector": "",
       "resonance": false,
       "score": 46.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601877",
@@ -1007,7 +1007,7 @@
       "sector": "",
       "resonance": false,
       "score": 50.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600089",
@@ -1023,7 +1023,7 @@
       "sector": "",
       "resonance": false,
       "score": 44.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600418",
@@ -1039,7 +1039,7 @@
       "sector": "",
       "resonance": false,
       "score": 42.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601117",
@@ -1055,7 +1055,7 @@
       "sector": "",
       "resonance": false,
       "score": 46.5,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600000",
@@ -1071,7 +1071,7 @@
       "sector": "",
       "resonance": false,
       "score": 51.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002681",
@@ -1087,7 +1087,7 @@
       "sector": "",
       "resonance": false,
       "score": 45.5,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600103",
@@ -1103,7 +1103,7 @@
       "sector": "",
       "resonance": false,
       "score": 45.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002558",
@@ -1119,7 +1119,7 @@
       "sector": "",
       "resonance": false,
       "score": 43.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601665",
@@ -1135,7 +1135,7 @@
       "sector": "",
       "resonance": false,
       "score": 46.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000768",
@@ -1151,7 +1151,7 @@
       "sector": "",
       "resonance": false,
       "score": 44.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600157",
@@ -1167,7 +1167,7 @@
       "sector": "",
       "resonance": false,
       "score": 43.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601669",
@@ -1183,7 +1183,7 @@
       "sector": "",
       "resonance": false,
       "score": 43.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600619",
@@ -1199,7 +1199,7 @@
       "sector": "",
       "resonance": false,
       "score": 41.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600919",
@@ -1215,7 +1215,7 @@
       "sector": "",
       "resonance": false,
       "score": 41.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601868",
@@ -1231,7 +1231,7 @@
       "sector": "",
       "resonance": false,
       "score": 41.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601727",
@@ -1247,7 +1247,7 @@
       "sector": "",
       "resonance": false,
       "score": 41.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002345",
@@ -1263,7 +1263,7 @@
       "sector": "",
       "resonance": false,
       "score": 40.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600686",
@@ -1279,7 +1279,7 @@
       "sector": "",
       "resonance": false,
       "score": 39.2,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000601",
@@ -1295,7 +1295,7 @@
       "sector": "",
       "resonance": false,
       "score": 39.5,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002639",
@@ -1311,7 +1311,7 @@
       "sector": "",
       "resonance": false,
       "score": 41.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002236",
@@ -1327,7 +1327,7 @@
       "sector": "",
       "resonance": false,
       "score": 40.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "601696",
@@ -1343,7 +1343,7 @@
       "sector": "",
       "resonance": false,
       "score": 35.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000681",
@@ -1359,7 +1359,7 @@
       "sector": "",
       "resonance": false,
       "score": 33.1,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002624",
@@ -1375,7 +1375,7 @@
       "sector": "",
       "resonance": false,
       "score": 34.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600726",
@@ -1391,7 +1391,7 @@
       "sector": "",
       "resonance": false,
       "score": 30.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002051",
@@ -1407,7 +1407,7 @@
       "sector": "",
       "resonance": false,
       "score": 32.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600885",
@@ -1423,7 +1423,7 @@
       "sector": "",
       "resonance": false,
       "score": 33.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603305",
@@ -1439,7 +1439,7 @@
       "sector": "",
       "resonance": false,
       "score": 30.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600893",
@@ -1455,7 +1455,7 @@
       "sector": "",
       "resonance": false,
       "score": 33.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002130",
@@ -1471,7 +1471,7 @@
       "sector": "",
       "resonance": false,
       "score": 35.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000670",
@@ -1487,7 +1487,7 @@
       "sector": "",
       "resonance": false,
       "score": 36.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002757",
@@ -1503,7 +1503,7 @@
       "sector": "",
       "resonance": false,
       "score": 32.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002249",
@@ -1519,7 +1519,7 @@
       "sector": "",
       "resonance": false,
       "score": 31.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600875",
@@ -1535,7 +1535,7 @@
       "sector": "",
       "resonance": false,
       "score": 38.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603466",
@@ -1551,7 +1551,7 @@
       "sector": "",
       "resonance": false,
       "score": 38.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000559",
@@ -1567,7 +1567,7 @@
       "sector": "",
       "resonance": false,
       "score": 31.8,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002444",
@@ -1583,7 +1583,7 @@
       "sector": "",
       "resonance": false,
       "score": 39.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002657",
@@ -1599,7 +1599,7 @@
       "sector": "",
       "resonance": false,
       "score": 30.9,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000948",
@@ -1615,7 +1615,7 @@
       "sector": "",
       "resonance": false,
       "score": 37.0,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002546",
@@ -1631,7 +1631,7 @@
       "sector": "",
       "resonance": false,
       "score": 35.4,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "000722",
@@ -1647,7 +1647,7 @@
       "sector": "",
       "resonance": false,
       "score": 35.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "603000",
@@ -1663,7 +1663,7 @@
       "sector": "",
       "resonance": false,
       "score": 30.3,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "600602",
@@ -1679,7 +1679,7 @@
       "sector": "",
       "resonance": false,
       "score": 35.6,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002415",
@@ -1695,7 +1695,7 @@
       "sector": "",
       "resonance": false,
       "score": 30.7,
-      "status": "new"
+      "status": "kept"
     },
     {
       "code": "002292",
@@ -1711,7 +1711,7 @@
       "sector": "",
       "resonance": false,
       "score": 27.4,
-      "status": "new"
+      "status": "kept"
     }
   ],
   "broken": []
