@@ -133,17 +133,70 @@ def _spot_from_tencent():
 
 
 def _spot_from_em():
-    """东财全市场快照（大陆被风控时失败）"""
+    """东财全市场快照。
+    代码列表用 stock_info_a_code_name（push2 域名，单请求全量 5539 只，大陆/海外可用）；
+    市值/成交额用 clist 分页补充（失败则降级：仅代码+名称，粗筛市值/成交额跳过）。"""
     import akshare as ak
-    df = ak.stock_zh_a_spot_em()
-    return pd.DataFrame({
-        'code': df['代码'].astype(str).str.zfill(6),
-        'name': df['名称'].astype(str),
-        'price': pd.to_numeric(df['最新价'], errors='coerce'),
-        'chg_pct': pd.to_numeric(df['涨跌幅'], errors='coerce'),
-        'amount': pd.to_numeric(df['成交额'], errors='coerce'),
-        'mktcap': pd.to_numeric(df['总市值'], errors='coerce'),
+    import subprocess
+
+    codes = ak.stock_info_a_code_name()
+    base = pd.DataFrame({
+        'code': codes['code'].astype(str).str.zfill(6),
+        'name': codes['name'].astype(str),
     })
+    base['price'] = 0.0
+    base['chg_pct'] = 0.0
+    base['amount'] = 0.0
+    base['mktcap'] = 0.0
+
+    # 用 clist 分页补充市值/成交额/涨跌幅（失败则保持 0，粗筛条件会跳过这些列）
+    curl_ua = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+               "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+    extra = {}
+    pn = 1
+    total = None
+    while pn <= 60:
+        url = ("https://push2.eastmoney.com/api/qt/clist/get"
+               f"?pn={pn}&pz=100&po=1&np=1&fltt=2&invt=2&fid=f3"
+               "&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23"
+               "&fields=f12,f13,f14,f2,f3,f6,f20")
+        try:
+            r = subprocess.run(['curl', '-s', '--max-time', '15', '-H',
+                                f'User-Agent: {curl_ua}', url],
+                               capture_output=True, encoding='utf-8', timeout=20)
+            j = json.loads(r.stdout)
+            data = j.get('data') or {}
+            if total is None:
+                total = int(data.get('total') or 0)
+            diff = data.get('diff') or []
+        except Exception:
+            break
+        if not diff:
+            break
+        for it in diff:
+            try:
+                c = str(it.get('f12', '')).zfill(6)
+                extra[c] = {
+                    'price': float(it.get('f2') or 0),
+                    'chg_pct': float(it.get('f3') or 0),
+                    'amount': float(it.get('f6') or 0),
+                    'mktcap': float(it.get('f20') or 0),
+                }
+            except (ValueError, TypeError):
+                continue
+        if len(extra) >= (total or 1):
+            break
+        pn += 1
+        time.sleep(0.8)
+
+    if extra:
+        ex = pd.DataFrame(extra).T
+        ex.index.name = 'code'
+        base = base.set_index('code')
+        for col in ['price', 'chg_pct', 'amount', 'mktcap']:
+            base[col] = ex[col].reindex(base.index).fillna(0)
+        base = base.reset_index()
+    return base
 
 
 def _spot_from_sina():
@@ -162,13 +215,13 @@ def _spot_from_sina():
 
 def get_spot_df():
     """返回 DataFrame[code,name,price,chg_pct,amount,mktcap]。
-    数据源顺序：腾讯批量（主）-> 东财 -> 新浪，均带超时保护"""
-    # 1) 腾讯批量（主源）
-    df = _with_timeout(_spot_from_tencent, 90)
+    数据源顺序：东财 push2 clist（主，单请求全市场）-> 腾讯批量 -> 新浪，均带超时保护"""
+    # 1) 东财 push2 clist（主源）
+    df = _with_timeout(_spot_from_em, 30)
     if df is not None and not df.empty:
         return df
-    # 2) 东财
-    df = _with_timeout(_spot_from_em, 30)
+    # 2) 腾讯批量
+    df = _with_timeout(_spot_from_tencent, 90)
     if df is not None and not df.empty:
         return df
     # 3) 新浪
@@ -486,9 +539,14 @@ def main():
             return 1
         spot = spot.dropna(subset=['price', 'amount'])
         cand = spot[spot['code'].map(is_mainboard) & ~spot['name'].map(is_st)].copy()
-        cand = cand[(cand['amount'] >= args.min_amount) &
-                    (cand['mktcap'] >= args.min_market_cap) &
-                    (cand['chg_pct'].abs() <= MAX_CHG)]
+        # 若市值/成交额数据缺失（clist 补充失败降级），跳过这两项粗筛，仅按主板+非ST
+        has_amount = bool((cand['amount'].fillna(0) > 0).any())
+        if has_amount:
+            cand = cand[(cand['amount'] >= args.min_amount) &
+                        (cand['mktcap'] >= args.min_market_cap) &
+                        (cand['chg_pct'].abs() <= MAX_CHG)]
+        else:
+            print('⚠️ 市值/成交额数据缺失（clist 降级），跳过市值/成交额粗筛，全主板扫描')
         cand = cand.drop_duplicates(subset='code')
         print(f'📊 全市场 {len(spot)} 只 -> 主板+粗筛后候选 {len(cand)} 只')
 
