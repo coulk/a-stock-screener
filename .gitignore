@@ -29,3 +29,8 @@ data_orig.json
 chg_test.txt
 
 gen_chg.txt
+
+sdk_out.txt
+sdk_err.txt
+test_sdk_mcp.mjs
+

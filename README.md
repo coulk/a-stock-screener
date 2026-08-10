@@ -47,6 +47,27 @@ python test_logic.py          # 离线验证判定逻辑（不依赖网络）
 
 或手动触发：Actions → 「每日A股20日线回踩筛选」→ Run workflow。
 
+## 较上一日涨跌幅
+
+- 结果表中新增 `pct_chg` 字段（今日收盘 vs 昨日收盘涨跌幅 %）与 `prev_close`（昨收）
+- 由 `screener.py` 从日K数据计算（quotes.sina.cn/Yahoo，Actions 海外可用）
+- 前端「涨跌幅%」列红涨绿跌显示，可按该列排序
+
+## 本地 MCP 辅助工具
+
+网页每日自动更新走现有管线（quotes.sina.cn/Yahoo，GitHub Actions 海外可用）。
+以下 MCP 作为**本地辅助**（数据源为东财，仅大陆网络可用，Actions 海外不可用）：
+
+| MCP | 用途 | 启动方式 |
+|:---|:---|:---|
+| `stock-mcp-server`（GitHub: 1018053166） | 实时行情/K线/排行榜/股东分析，15 工具 | `node stock-mcp-server/index.js` |
+| `stock-sdk-mcp`（npm, chengzuopeng） | 全市场批量行情/条件选股/板块/技术指标，69 工具 | `npx -y stock-sdk-mcp` |
+
+本地刷新实时涨跌幅（可选，需大陆网络）：
+```bash
+python mcp_update.py --market   # 打印三大指数 + 用 stock-mcp-server 刷新 data.json 涨跌幅
+```
+
 ## 免责声明
 
 本页面结果仅为技术面初筛，不构成任何投资建议。股市有风险，投资需谨慎。
