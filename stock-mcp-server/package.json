@@ -1,0 +1,35 @@
+{
+  "name": "stock-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP服务器 - 从东方财富网获取股票实时数据、K线、排行榜、股东分析",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "stock-mcp-server": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "stock",
+    "eastmoney",
+    "finance",
+    "china-stock",
+    "shareholder"
+  ],
+  "author": "1018053166",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1018053166/stock-mcp-server.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

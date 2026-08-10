@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-10 07:53:47",
+  "generated_at": "2026-08-10 16:03:21",
   "market": "沪深主板",
   "total_spot": 5539,
   "candidates": 1056,
   "kline_ok": 1055,
   "matched": 123,
-  "new_count": 67,
-  "broken_count": 50,
-  "prev_date": "2026-08-10 00:48:10",
+  "new_count": 123,
+  "broken_count": 0,
+  "prev_date": "",
   "params": {
     "min_amount": 200000000.0,
     "min_market_cap": 5000000000.0,
@@ -21,6 +21,8 @@
       "code": "002379",
       "name": "宏桥控股",
       "price": 19.76,
+      "prev_close": 19.76,
+      "pct_chg": 0.0,
       "ma20": 19.2,
       "dist_ma20": 2.91,
       "slope_ma20": 6.47,
@@ -37,6 +39,8 @@
       "code": "601606",
       "name": "长城军工",
       "price": 36.18,
+      "prev_close": 32.89,
+      "pct_chg": 10.0,
       "ma20": 30.84,
       "dist_ma20": 17.32,
       "slope_ma20": 5.85,
@@ -47,12 +51,14 @@
       "sector": "",
       "resonance": false,
       "score": 60.3,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600312",
       "name": "平高电气",
       "price": 20.29,
+      "prev_close": 20.47,
+      "pct_chg": -0.88,
       "ma20": 19.29,
       "dist_ma20": 5.18,
       "slope_ma20": 5.51,
@@ -69,6 +75,8 @@
       "code": "600733",
       "name": "北汽蓝谷",
       "price": 5.46,
+      "prev_close": 5.5,
+      "pct_chg": -0.73,
       "ma20": 5.22,
       "dist_ma20": 4.53,
       "slope_ma20": 5.28,
@@ -85,6 +93,8 @@
       "code": "002532",
       "name": "天山铝业",
       "price": 13.94,
+      "prev_close": 13.55,
+      "pct_chg": 2.88,
       "ma20": 12.88,
       "dist_ma20": 8.24,
       "slope_ma20": 4.93,
@@ -95,12 +105,14 @@
       "sector": "",
       "resonance": false,
       "score": 62.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002987",
       "name": "京北方",
       "price": 11.3,
+      "prev_close": 11.3,
+      "pct_chg": 0.0,
       "ma20": 10.75,
       "dist_ma20": 5.17,
       "slope_ma20": 4.7,
@@ -117,6 +129,8 @@
       "code": "000893",
       "name": "亚钾国际",
       "price": 48.16,
+      "prev_close": 48.23,
+      "pct_chg": -0.15,
       "ma20": 47.44,
       "dist_ma20": 1.52,
       "slope_ma20": 4.42,
@@ -133,6 +147,8 @@
       "code": "002895",
       "name": "川恒股份",
       "price": 35.36,
+      "prev_close": 35.1,
+      "pct_chg": 0.74,
       "ma20": 33.45,
       "dist_ma20": 5.72,
       "slope_ma20": 4.39,
@@ -149,6 +165,8 @@
       "code": "002498",
       "name": "汉缆股份",
       "price": 7.01,
+      "prev_close": 6.82,
+      "pct_chg": 2.79,
       "ma20": 6.4,
       "dist_ma20": 9.45,
       "slope_ma20": 4.32,
@@ -159,12 +177,14 @@
       "sector": "",
       "resonance": false,
       "score": 66.0,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600756",
       "name": "浪潮软件",
       "price": 15.78,
+      "prev_close": 15.56,
+      "pct_chg": 1.41,
       "ma20": 15.08,
       "dist_ma20": 4.61,
       "slope_ma20": 4.25,
@@ -175,12 +195,14 @@
       "sector": "",
       "resonance": false,
       "score": 67.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601567",
       "name": "三星电气",
       "price": 16.01,
+      "prev_close": 15.88,
+      "pct_chg": 0.82,
       "ma20": 15.33,
       "dist_ma20": 4.44,
       "slope_ma20": 3.95,
@@ -197,6 +219,8 @@
       "code": "002410",
       "name": "广联达",
       "price": 9.54,
+      "prev_close": 9.39,
+      "pct_chg": 1.6,
       "ma20": 9.05,
       "dist_ma20": 5.39,
       "slope_ma20": 3.94,
@@ -207,12 +231,14 @@
       "sector": "",
       "resonance": false,
       "score": 68.1,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600728",
       "name": "佳都科技",
       "price": 4.77,
+      "prev_close": 4.75,
+      "pct_chg": 0.42,
       "ma20": 4.57,
       "dist_ma20": 4.38,
       "slope_ma20": 3.9,
@@ -229,6 +255,8 @@
       "code": "000400",
       "name": "许继电气",
       "price": 22.85,
+      "prev_close": 22.76,
+      "pct_chg": 0.4,
       "ma20": 22.17,
       "dist_ma20": 3.08,
       "slope_ma20": 3.51,
@@ -239,12 +267,14 @@
       "sector": "",
       "resonance": false,
       "score": 66.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "603300",
       "name": "海南华铁",
       "price": 5.01,
+      "prev_close": 4.95,
+      "pct_chg": 1.21,
       "ma20": 4.86,
       "dist_ma20": 3.0,
       "slope_ma20": 3.34,
@@ -261,6 +291,8 @@
       "code": "600446",
       "name": "金证股份",
       "price": 11.26,
+      "prev_close": 11.13,
+      "pct_chg": 1.17,
       "ma20": 10.6,
       "dist_ma20": 6.26,
       "slope_ma20": 3.19,
@@ -277,6 +309,8 @@
       "code": "002115",
       "name": "三维通信",
       "price": 11.9,
+      "prev_close": 11.93,
+      "pct_chg": -0.25,
       "ma20": 11.15,
       "dist_ma20": 6.69,
       "slope_ma20": 3.16,
@@ -287,12 +321,14 @@
       "sector": "",
       "resonance": false,
       "score": 65.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002270",
       "name": "华明装备",
       "price": 20.3,
+      "prev_close": 20.17,
+      "pct_chg": 0.64,
       "ma20": 19.2,
       "dist_ma20": 5.76,
       "slope_ma20": 3.09,
@@ -303,12 +339,14 @@
       "sector": "",
       "resonance": false,
       "score": 66.9,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002229",
       "name": "鸿博股份",
       "price": 10.67,
+      "prev_close": 10.58,
+      "pct_chg": 0.85,
       "ma20": 10.0,
       "dist_ma20": 6.72,
       "slope_ma20": 2.97,
@@ -319,12 +357,14 @@
       "sector": "",
       "resonance": false,
       "score": 67.8,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000555",
       "name": "神州信息",
       "price": 10.87,
+      "prev_close": 10.9,
+      "pct_chg": -0.28,
       "ma20": 10.52,
       "dist_ma20": 3.29,
       "slope_ma20": 2.77,
@@ -341,6 +381,8 @@
       "code": "600635",
       "name": "大众公用",
       "price": 4.71,
+      "prev_close": 4.71,
+      "pct_chg": 0.0,
       "ma20": 4.57,
       "dist_ma20": 3.03,
       "slope_ma20": 2.76,
@@ -357,6 +399,8 @@
       "code": "601360",
       "name": "三六零",
       "price": 9.61,
+      "prev_close": 9.64,
+      "pct_chg": -0.31,
       "ma20": 9.1,
       "dist_ma20": 5.61,
       "slope_ma20": 2.73,
@@ -367,12 +411,14 @@
       "sector": "",
       "resonance": false,
       "score": 65.7,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002416",
       "name": "爱施德",
       "price": 9.67,
+      "prev_close": 9.59,
+      "pct_chg": 0.83,
       "ma20": 9.42,
       "dist_ma20": 2.66,
       "slope_ma20": 2.66,
@@ -389,6 +435,8 @@
       "code": "600570",
       "name": "恒生电子",
       "price": 23.07,
+      "prev_close": 22.77,
+      "pct_chg": 1.32,
       "ma20": 21.81,
       "dist_ma20": 5.76,
       "slope_ma20": 2.64,
@@ -399,12 +447,14 @@
       "sector": "",
       "resonance": false,
       "score": 62.1,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002517",
       "name": "恺英网络",
       "price": 18.31,
+      "prev_close": 17.93,
+      "pct_chg": 2.12,
       "ma20": 16.8,
       "dist_ma20": 8.97,
       "slope_ma20": 2.62,
@@ -421,6 +471,8 @@
       "code": "000917",
       "name": "电广传媒",
       "price": 7.14,
+      "prev_close": 7.18,
+      "pct_chg": -0.56,
       "ma20": 6.77,
       "dist_ma20": 5.51,
       "slope_ma20": 2.51,
@@ -437,6 +489,8 @@
       "code": "600406",
       "name": "国电南瑞",
       "price": 24.14,
+      "prev_close": 24.12,
+      "pct_chg": 0.08,
       "ma20": 23.73,
       "dist_ma20": 1.73,
       "slope_ma20": 2.42,
@@ -447,12 +501,14 @@
       "sector": "",
       "resonance": false,
       "score": 64.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000683",
       "name": "博源化工",
       "price": 6.13,
+      "prev_close": 6.07,
+      "pct_chg": 0.99,
       "ma20": 5.98,
       "dist_ma20": 2.57,
       "slope_ma20": 2.41,
@@ -463,12 +519,14 @@
       "sector": "",
       "resonance": false,
       "score": 58.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002015",
       "name": "协鑫能科",
       "price": 15.61,
+      "prev_close": 15.8,
+      "pct_chg": -1.2,
       "ma20": 14.81,
       "dist_ma20": 5.44,
       "slope_ma20": 2.4,
@@ -479,12 +537,14 @@
       "sector": "",
       "resonance": false,
       "score": 59.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000035",
       "name": "中国天楹",
       "price": 4.91,
+      "prev_close": 4.82,
+      "pct_chg": 1.87,
       "ma20": 4.76,
       "dist_ma20": 3.26,
       "slope_ma20": 2.37,
@@ -501,6 +561,8 @@
       "code": "603613",
       "name": "国联股份",
       "price": 19.62,
+      "prev_close": 19.63,
+      "pct_chg": -0.05,
       "ma20": 18.65,
       "dist_ma20": 5.22,
       "slope_ma20": 2.36,
@@ -517,6 +579,8 @@
       "code": "603338",
       "name": "浙江鼎力",
       "price": 57.37,
+      "prev_close": 56.98,
+      "pct_chg": 0.68,
       "ma20": 55.87,
       "dist_ma20": 2.68,
       "slope_ma20": 2.34,
@@ -533,6 +597,8 @@
       "code": "601975",
       "name": "招商南油",
       "price": 3.71,
+      "prev_close": 3.71,
+      "pct_chg": 0.0,
       "ma20": 3.58,
       "dist_ma20": 3.49,
       "slope_ma20": 2.25,
@@ -549,6 +615,8 @@
       "code": "601615",
       "name": "明阳智能",
       "price": 11.69,
+      "prev_close": 11.6,
+      "pct_chg": 0.78,
       "ma20": 11.08,
       "dist_ma20": 5.51,
       "slope_ma20": 2.12,
@@ -559,12 +627,14 @@
       "sector": "",
       "resonance": false,
       "score": 52.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000564",
       "name": "供销大集",
       "price": 1.43,
+      "prev_close": 1.41,
+      "pct_chg": 1.42,
       "ma20": 1.38,
       "dist_ma20": 3.32,
       "slope_ma20": 2.1,
@@ -581,6 +651,8 @@
       "code": "600452",
       "name": "涪陵电力",
       "price": 9.73,
+      "prev_close": 9.68,
+      "pct_chg": 0.52,
       "ma20": 9.69,
       "dist_ma20": 0.38,
       "slope_ma20": 2.09,
@@ -597,6 +669,8 @@
       "code": "601012",
       "name": "隆基绿能",
       "price": 12.94,
+      "prev_close": 12.93,
+      "pct_chg": 0.08,
       "ma20": 12.56,
       "dist_ma20": 3.05,
       "slope_ma20": 2.09,
@@ -613,6 +687,8 @@
       "code": "000001",
       "name": "平安银行",
       "price": 11.29,
+      "prev_close": 11.19,
+      "pct_chg": 0.89,
       "ma20": 11.15,
       "dist_ma20": 1.28,
       "slope_ma20": 1.78,
@@ -623,12 +699,14 @@
       "sector": "",
       "resonance": false,
       "score": 52.1,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002065",
       "name": "东华软件",
       "price": 7.45,
+      "prev_close": 7.35,
+      "pct_chg": 1.36,
       "ma20": 7.08,
       "dist_ma20": 5.21,
       "slope_ma20": 1.76,
@@ -639,12 +717,14 @@
       "sector": "",
       "resonance": false,
       "score": 51.8,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600103",
       "name": "青山纸业",
       "price": 2.98,
+      "prev_close": 2.93,
+      "pct_chg": 1.71,
       "ma20": 2.78,
       "dist_ma20": 7.04,
       "slope_ma20": 1.75,
@@ -655,12 +735,14 @@
       "sector": "",
       "resonance": false,
       "score": 54.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601997",
       "name": "贵阳银行",
       "price": 5.64,
+      "prev_close": 5.59,
+      "pct_chg": 0.89,
       "ma20": 5.59,
       "dist_ma20": 0.83,
       "slope_ma20": 1.71,
@@ -671,12 +753,14 @@
       "sector": "",
       "resonance": false,
       "score": 52.8,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000921",
       "name": "海信家电",
       "price": 26.8,
+      "prev_close": 26.45,
+      "pct_chg": 1.32,
       "ma20": 26.15,
       "dist_ma20": 2.47,
       "slope_ma20": 1.7,
@@ -687,12 +771,14 @@
       "sector": "",
       "resonance": false,
       "score": 51.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002583",
       "name": "海能达",
       "price": 8.43,
+      "prev_close": 8.33,
+      "pct_chg": 1.2,
       "ma20": 8.12,
       "dist_ma20": 3.77,
       "slope_ma20": 1.69,
@@ -709,6 +795,8 @@
       "code": "000158",
       "name": "常山北明",
       "price": 13.56,
+      "prev_close": 13.56,
+      "pct_chg": 0.0,
       "ma20": 12.91,
       "dist_ma20": 5.02,
       "slope_ma20": 1.61,
@@ -725,6 +813,8 @@
       "code": "601166",
       "name": "兴业银行",
       "price": 18.34,
+      "prev_close": 18.34,
+      "pct_chg": 0.0,
       "ma20": 18.32,
       "dist_ma20": 0.13,
       "slope_ma20": 1.61,
@@ -735,12 +825,14 @@
       "sector": "",
       "resonance": false,
       "score": 53.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601916",
       "name": "浙商银行",
       "price": 2.91,
+      "prev_close": 2.9,
+      "pct_chg": 0.34,
       "ma20": 2.91,
       "dist_ma20": 0.05,
       "slope_ma20": 1.61,
@@ -757,6 +849,8 @@
       "code": "000625",
       "name": "长安汽车",
       "price": 7.42,
+      "prev_close": 7.35,
+      "pct_chg": 0.95,
       "ma20": 7.38,
       "dist_ma20": 0.58,
       "slope_ma20": 1.6,
@@ -773,6 +867,8 @@
       "code": "601933",
       "name": "永辉超市",
       "price": 3.27,
+      "prev_close": 3.23,
+      "pct_chg": 1.24,
       "ma20": 3.17,
       "dist_ma20": 3.09,
       "slope_ma20": 1.59,
@@ -783,12 +879,14 @@
       "sector": "",
       "resonance": false,
       "score": 48.1,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "603881",
       "name": "数据港",
       "price": 25.48,
+      "prev_close": 25.71,
+      "pct_chg": -0.89,
       "ma20": 25.0,
       "dist_ma20": 1.92,
       "slope_ma20": 1.54,
@@ -799,12 +897,14 @@
       "sector": "",
       "resonance": false,
       "score": 56.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601877",
       "name": "正泰电器",
       "price": 25.53,
+      "prev_close": 25.35,
+      "pct_chg": 0.71,
       "ma20": 24.8,
       "dist_ma20": 2.95,
       "slope_ma20": 1.52,
@@ -815,12 +915,14 @@
       "sector": "",
       "resonance": false,
       "score": 53.0,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002555",
       "name": "三七互娱",
       "price": 19.98,
+      "prev_close": 19.79,
+      "pct_chg": 0.96,
       "ma20": 19.13,
       "dist_ma20": 4.42,
       "slope_ma20": 1.5,
@@ -831,12 +933,14 @@
       "sector": "",
       "resonance": false,
       "score": 51.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600850",
       "name": "电科数字",
       "price": 15.56,
+      "prev_close": 15.43,
+      "pct_chg": 0.84,
       "ma20": 14.98,
       "dist_ma20": 3.86,
       "slope_ma20": 1.46,
@@ -847,12 +951,14 @@
       "sector": "",
       "resonance": false,
       "score": 52.0,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600016",
       "name": "民生银行",
       "price": 3.53,
+      "prev_close": 3.53,
+      "pct_chg": 0.0,
       "ma20": 3.53,
       "dist_ma20": 0.03,
       "slope_ma20": 1.44,
@@ -869,6 +975,8 @@
       "code": "002405",
       "name": "四维图新",
       "price": 6.65,
+      "prev_close": 6.64,
+      "pct_chg": 0.15,
       "ma20": 6.42,
       "dist_ma20": 3.51,
       "slope_ma20": 1.4,
@@ -885,6 +993,8 @@
       "code": "601117",
       "name": "中国化学",
       "price": 7.8,
+      "prev_close": 7.77,
+      "pct_chg": 0.39,
       "ma20": 7.7,
       "dist_ma20": 1.31,
       "slope_ma20": 1.29,
@@ -895,12 +1005,14 @@
       "sector": "",
       "resonance": false,
       "score": 47.5,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600926",
       "name": "杭州银行",
       "price": 16.1,
+      "prev_close": 16.0,
+      "pct_chg": 0.63,
       "ma20": 15.95,
       "dist_ma20": 0.92,
       "slope_ma20": 1.27,
@@ -911,12 +1023,14 @@
       "sector": "",
       "resonance": false,
       "score": 48.3,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002017",
       "name": "东信和平",
       "price": 13.84,
+      "prev_close": 13.97,
+      "pct_chg": -0.93,
       "ma20": 13.22,
       "dist_ma20": 4.67,
       "slope_ma20": 1.23,
@@ -933,6 +1047,8 @@
       "code": "600418",
       "name": "江淮汽车",
       "price": 23.79,
+      "prev_close": 24.13,
+      "pct_chg": -1.41,
       "ma20": 22.73,
       "dist_ma20": 4.65,
       "slope_ma20": 1.23,
@@ -943,12 +1059,14 @@
       "sector": "",
       "resonance": false,
       "score": 48.0,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002230",
       "name": "科大讯飞",
       "price": 43.49,
+      "prev_close": 43.53,
+      "pct_chg": -0.09,
       "ma20": 41.57,
       "dist_ma20": 4.62,
       "slope_ma20": 1.22,
@@ -959,12 +1077,14 @@
       "sector": "",
       "resonance": false,
       "score": 50.1,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600619",
       "name": "海立股份",
       "price": 14.05,
+      "prev_close": 14.08,
+      "pct_chg": -0.21,
       "ma20": 13.28,
       "dist_ma20": 5.82,
       "slope_ma20": 1.16,
@@ -975,12 +1095,14 @@
       "sector": "",
       "resonance": false,
       "score": 49.1,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600036",
       "name": "招商银行",
       "price": 38.91,
+      "prev_close": 38.8,
+      "pct_chg": 0.28,
       "ma20": 38.9,
       "dist_ma20": 0.02,
       "slope_ma20": 1.0,
@@ -997,6 +1119,8 @@
       "code": "002639",
       "name": "雪人集团",
       "price": 12.61,
+      "prev_close": 12.52,
+      "pct_chg": 0.72,
       "ma20": 11.86,
       "dist_ma20": 6.28,
       "slope_ma20": 0.99,
@@ -1007,12 +1131,14 @@
       "sector": "",
       "resonance": false,
       "score": 52.2,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "603496",
       "name": "恒为科技",
       "price": 25.48,
+      "prev_close": 25.42,
+      "pct_chg": 0.24,
       "ma20": 24.94,
       "dist_ma20": 2.15,
       "slope_ma20": 0.93,
@@ -1029,6 +1155,8 @@
       "code": "002558",
       "name": "巨人网络",
       "price": 29.79,
+      "prev_close": 29.34,
+      "pct_chg": 1.53,
       "ma20": 28.19,
       "dist_ma20": 5.67,
       "slope_ma20": 0.89,
@@ -1039,12 +1167,14 @@
       "sector": "",
       "resonance": false,
       "score": 44.0,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600726",
       "name": "华电能源",
       "price": 6.26,
+      "prev_close": 6.32,
+      "pct_chg": -0.95,
       "ma20": 6.02,
       "dist_ma20": 4.0,
       "slope_ma20": 0.85,
@@ -1055,12 +1185,14 @@
       "sector": "",
       "resonance": false,
       "score": 41.9,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002459",
       "name": "晶澳科技",
       "price": 7.8,
+      "prev_close": 7.72,
+      "pct_chg": 1.04,
       "ma20": 7.39,
       "dist_ma20": 5.61,
       "slope_ma20": 0.83,
@@ -1077,6 +1209,8 @@
       "code": "002624",
       "name": "完美世界",
       "price": 11.73,
+      "prev_close": 11.49,
+      "pct_chg": 2.09,
       "ma20": 10.78,
       "dist_ma20": 8.82,
       "slope_ma20": 0.8,
@@ -1087,12 +1221,14 @@
       "sector": "",
       "resonance": false,
       "score": 40.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601868",
       "name": "中国能建",
       "price": 2.61,
+      "prev_close": 2.6,
+      "pct_chg": 0.38,
       "ma20": 2.58,
       "dist_ma20": 1.28,
       "slope_ma20": 0.8,
@@ -1103,12 +1239,14 @@
       "sector": "",
       "resonance": false,
       "score": 43.8,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601669",
       "name": "中国电建",
       "price": 4.82,
+      "prev_close": 4.81,
+      "pct_chg": 0.21,
       "ma20": 4.81,
       "dist_ma20": 0.24,
       "slope_ma20": 0.79,
@@ -1119,12 +1257,14 @@
       "sector": "",
       "resonance": false,
       "score": 44.5,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601665",
       "name": "齐鲁银行",
       "price": 6.24,
+      "prev_close": 6.22,
+      "pct_chg": 0.32,
       "ma20": 6.2,
       "dist_ma20": 0.69,
       "slope_ma20": 0.77,
@@ -1135,12 +1275,14 @@
       "sector": "",
       "resonance": false,
       "score": 42.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002051",
       "name": "中工国际",
       "price": 9.19,
+      "prev_close": 9.22,
+      "pct_chg": -0.33,
       "ma20": 8.82,
       "dist_ma20": 4.17,
       "slope_ma20": 0.7,
@@ -1151,12 +1293,14 @@
       "sector": "",
       "resonance": false,
       "score": 41.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601727",
       "name": "上海电气",
       "price": 6.85,
+      "prev_close": 6.83,
+      "pct_chg": 0.29,
       "ma20": 6.73,
       "dist_ma20": 1.75,
       "slope_ma20": 0.64,
@@ -1167,12 +1311,14 @@
       "sector": "",
       "resonance": false,
       "score": 47.2,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601696",
       "name": "中银证券",
       "price": 11.96,
+      "prev_close": 11.99,
+      "pct_chg": -0.25,
       "ma20": 11.71,
       "dist_ma20": 2.12,
       "slope_ma20": 0.58,
@@ -1183,12 +1329,14 @@
       "sector": "",
       "resonance": false,
       "score": 40.5,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601111",
       "name": "中国国航",
       "price": 6.09,
+      "prev_close": 6.07,
+      "pct_chg": 0.33,
       "ma20": 6.05,
       "dist_ma20": 0.69,
       "slope_ma20": 0.57,
@@ -1205,6 +1353,8 @@
       "code": "600029",
       "name": "南方航空",
       "price": 5.15,
+      "prev_close": 5.15,
+      "pct_chg": 0.0,
       "ma20": 5.13,
       "dist_ma20": 0.44,
       "slope_ma20": 0.54,
@@ -1221,6 +1371,8 @@
       "code": "600115",
       "name": "中国东航",
       "price": 3.7,
+      "prev_close": 3.69,
+      "pct_chg": 0.27,
       "ma20": 3.65,
       "dist_ma20": 1.49,
       "slope_ma20": 0.5,
@@ -1237,6 +1389,8 @@
       "code": "002797",
       "name": "第一创业",
       "price": 6.57,
+      "prev_close": 6.56,
+      "pct_chg": 0.15,
       "ma20": 6.57,
       "dist_ma20": 0.05,
       "slope_ma20": 0.46,
@@ -1253,6 +1407,8 @@
       "code": "000681",
       "name": "视觉中国",
       "price": 18.36,
+      "prev_close": 18.4,
+      "pct_chg": -0.22,
       "ma20": 17.22,
       "dist_ma20": 6.65,
       "slope_ma20": 0.36,
@@ -1263,12 +1419,14 @@
       "sector": "",
       "resonance": false,
       "score": 43.5,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002488",
       "name": "金固股份",
       "price": 8.96,
+      "prev_close": 8.79,
+      "pct_chg": 1.93,
       "ma20": 8.8,
       "dist_ma20": 1.86,
       "slope_ma20": 0.32,
@@ -1285,6 +1443,8 @@
       "code": "603305",
       "name": "旭升集团",
       "price": 11.9,
+      "prev_close": 12.02,
+      "pct_chg": -1.0,
       "ma20": 11.25,
       "dist_ma20": 5.75,
       "slope_ma20": 0.31,
@@ -1295,12 +1455,14 @@
       "sector": "",
       "resonance": false,
       "score": 33.4,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002681",
       "name": "奋达科技",
       "price": 4.6,
+      "prev_close": 4.57,
+      "pct_chg": 0.66,
       "ma20": 4.54,
       "dist_ma20": 1.39,
       "slope_ma20": 0.3,
@@ -1311,12 +1473,14 @@
       "sector": "",
       "resonance": false,
       "score": 41.7,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002249",
       "name": "大洋电机",
       "price": 7.44,
+      "prev_close": 7.4,
+      "pct_chg": 0.54,
       "ma20": 7.13,
       "dist_ma20": 4.37,
       "slope_ma20": 0.25,
@@ -1327,12 +1491,14 @@
       "sector": "",
       "resonance": false,
       "score": 37.3,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "603466",
       "name": "风语筑",
       "price": 11.28,
+      "prev_close": 11.35,
+      "pct_chg": -0.62,
       "ma20": 10.88,
       "dist_ma20": 3.72,
       "slope_ma20": 0.15,
@@ -1343,12 +1509,14 @@
       "sector": "",
       "resonance": false,
       "score": 42.7,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002130",
       "name": "沃尔核材",
       "price": 17.23,
+      "prev_close": 17.23,
+      "pct_chg": 0.0,
       "ma20": 16.38,
       "dist_ma20": 5.21,
       "slope_ma20": 0.11,
@@ -1359,12 +1527,14 @@
       "sector": "",
       "resonance": false,
       "score": 38.3,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000670",
       "name": "盈方微",
       "price": 6.92,
+      "prev_close": 6.84,
+      "pct_chg": 1.17,
       "ma20": 6.45,
       "dist_ma20": 7.35,
       "slope_ma20": 0.09,
@@ -1375,12 +1545,14 @@
       "sector": "",
       "resonance": false,
       "score": 37.2,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002236",
       "name": "大华股份",
       "price": 16.85,
+      "prev_close": 16.84,
+      "pct_chg": 0.06,
       "ma20": 16.61,
       "dist_ma20": 1.43,
       "slope_ma20": 0.09,
@@ -1391,12 +1563,14 @@
       "sector": "",
       "resonance": false,
       "score": 39.9,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600699",
       "name": "均胜电子",
       "price": 21.18,
+      "prev_close": 21.2,
+      "pct_chg": -0.09,
       "ma20": 20.51,
       "dist_ma20": 3.27,
       "slope_ma20": 0.06,
@@ -1413,6 +1587,8 @@
       "code": "002036",
       "name": "联创电子",
       "price": 7.31,
+      "prev_close": 7.29,
+      "pct_chg": 0.27,
       "ma20": 6.79,
       "dist_ma20": 7.67,
       "slope_ma20": 0.05,
@@ -1429,6 +1605,8 @@
       "code": "603888",
       "name": "新华网",
       "price": 16.75,
+      "prev_close": 16.86,
+      "pct_chg": -0.65,
       "ma20": 16.71,
       "dist_ma20": 0.25,
       "slope_ma20": 0.05,
@@ -1445,6 +1623,8 @@
       "code": "603220",
       "name": "中贝通信",
       "price": 19.23,
+      "prev_close": 19.72,
+      "pct_chg": -2.48,
       "ma20": 18.58,
       "dist_ma20": 3.52,
       "slope_ma20": -0.1,
@@ -1461,6 +1641,8 @@
       "code": "002668",
       "name": "TCL智家",
       "price": 10.37,
+      "prev_close": 10.68,
+      "pct_chg": -2.9,
       "ma20": 10.34,
       "dist_ma20": 0.26,
       "slope_ma20": -0.16,
@@ -1477,6 +1659,8 @@
       "code": "000559",
       "name": "万向钱潮",
       "price": 11.8,
+      "prev_close": 11.77,
+      "pct_chg": 0.25,
       "ma20": 11.05,
       "dist_ma20": 6.79,
       "slope_ma20": -0.22,
@@ -1487,12 +1671,14 @@
       "sector": "",
       "resonance": false,
       "score": 34.8,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "600875",
       "name": "东方电气",
       "price": 27.19,
+      "prev_close": 27.39,
+      "pct_chg": -0.73,
       "ma20": 26.3,
       "dist_ma20": 3.38,
       "slope_ma20": -0.3,
@@ -1503,12 +1689,14 @@
       "sector": "",
       "resonance": false,
       "score": 37.9,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002657",
       "name": "中科金财",
       "price": 15.88,
+      "prev_close": 15.8,
+      "pct_chg": 0.51,
       "ma20": 14.72,
       "dist_ma20": 7.85,
       "slope_ma20": -0.36,
@@ -1519,12 +1707,14 @@
       "sector": "",
       "resonance": false,
       "score": 30.9,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002174",
       "name": "游族网络",
       "price": 11.99,
+      "prev_close": 11.8,
+      "pct_chg": 1.61,
       "ma20": 11.55,
       "dist_ma20": 3.79,
       "slope_ma20": -0.71,
@@ -1541,6 +1731,8 @@
       "code": "000948",
       "name": "南天信息",
       "price": 15.21,
+      "prev_close": 14.8,
+      "pct_chg": 2.77,
       "ma20": 14.44,
       "dist_ma20": 5.32,
       "slope_ma20": 4.02,
@@ -1551,12 +1743,14 @@
       "sector": "",
       "resonance": false,
       "score": 31.5,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "000997",
       "name": "新 大 陆",
       "price": 18.42,
+      "prev_close": 18.36,
+      "pct_chg": 0.33,
       "ma20": 17.51,
       "dist_ma20": 5.23,
       "slope_ma20": 3.75,
@@ -1573,6 +1767,8 @@
       "code": "002546",
       "name": "新联电子",
       "price": 8.64,
+      "prev_close": 8.6,
+      "pct_chg": 0.47,
       "ma20": 8.31,
       "dist_ma20": 3.97,
       "slope_ma20": 3.64,
@@ -1583,12 +1779,14 @@
       "sector": "",
       "resonance": false,
       "score": 41.5,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "603000",
       "name": "人民网",
       "price": 17.06,
+      "prev_close": 17.1,
+      "pct_chg": -0.23,
       "ma20": 16.18,
       "dist_ma20": 5.42,
       "slope_ma20": 3.6,
@@ -1599,12 +1797,14 @@
       "sector": "",
       "resonance": false,
       "score": 39.6,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "601003",
       "name": "柳钢股份",
       "price": 3.83,
+      "prev_close": 3.75,
+      "pct_chg": 2.13,
       "ma20": 3.71,
       "dist_ma20": 3.25,
       "slope_ma20": 3.37,
@@ -1621,6 +1821,8 @@
       "code": "002063",
       "name": "远光软件",
       "price": 5.63,
+      "prev_close": 5.57,
+      "pct_chg": 1.08,
       "ma20": 5.45,
       "dist_ma20": 3.28,
       "slope_ma20": 2.69,
@@ -1637,6 +1839,8 @@
       "code": "600633",
       "name": "浙数文化",
       "price": 11.22,
+      "prev_close": 11.23,
+      "pct_chg": -0.09,
       "ma20": 10.73,
       "dist_ma20": 4.57,
       "slope_ma20": 2.44,
@@ -1653,6 +1857,8 @@
       "code": "600602",
       "name": "云赛智联",
       "price": 18.0,
+      "prev_close": 17.93,
+      "pct_chg": 0.39,
       "ma20": 17.96,
       "dist_ma20": 0.22,
       "slope_ma20": 2.37,
@@ -1663,12 +1869,14 @@
       "sector": "",
       "resonance": false,
       "score": 36.3,
-      "status": "kept"
+      "status": "new"
     },
     {
       "code": "002439",
       "name": "启明星辰",
       "price": 14.32,
+      "prev_close": 14.42,
+      "pct_chg": -0.69,
       "ma20": 13.78,
       "dist_ma20": 3.9,
       "slope_ma20": 2.27,
@@ -1685,6 +1893,8 @@
       "code": "002920",
       "name": "德赛西威",
       "price": 92.79,
+      "prev_close": 92.29,
+      "pct_chg": 0.54,
       "ma20": 87.08,
       "dist_ma20": 6.55,
       "slope_ma20": 2.23,
@@ -1701,6 +1911,8 @@
       "code": "002027",
       "name": "分众传媒",
       "price": 5.29,
+      "prev_close": 5.14,
+      "pct_chg": 2.92,
       "ma20": 5.21,
       "dist_ma20": 1.56,
       "slope_ma20": 1.96,
@@ -1717,6 +1929,8 @@
       "code": "000651",
       "name": "格力电器",
       "price": 40.67,
+      "prev_close": 40.1,
+      "pct_chg": 1.42,
       "ma20": 40.61,
       "dist_ma20": 0.14,
       "slope_ma20": 1.2,
@@ -1733,6 +1947,8 @@
       "code": "000778",
       "name": "新兴铸管",
       "price": 3.8,
+      "prev_close": 3.75,
+      "pct_chg": 1.33,
       "ma20": 3.78,
       "dist_ma20": 0.44,
       "slope_ma20": 1.03,
@@ -1749,6 +1965,8 @@
       "code": "002152",
       "name": "广电运通",
       "price": 10.23,
+      "prev_close": 10.21,
+      "pct_chg": 0.2,
       "ma20": 10.08,
       "dist_ma20": 1.49,
       "slope_ma20": 0.64,
@@ -1765,6 +1983,8 @@
       "code": "603296",
       "name": "华勤技术",
       "price": 80.81,
+      "prev_close": 81.81,
+      "pct_chg": -1.22,
       "ma20": 80.66,
       "dist_ma20": 0.18,
       "slope_ma20": 0.43,
@@ -1781,6 +2001,8 @@
       "code": "600481",
       "name": "双良节能",
       "price": 4.38,
+      "prev_close": 4.34,
+      "pct_chg": 0.92,
       "ma20": 4.07,
       "dist_ma20": 7.56,
       "slope_ma20": -0.37,
@@ -1797,6 +2019,8 @@
       "code": "002268",
       "name": "电科网安",
       "price": 14.44,
+      "prev_close": 14.37,
+      "pct_chg": 0.49,
       "ma20": 14.31,
       "dist_ma20": 0.91,
       "slope_ma20": -0.64,
@@ -1813,6 +2037,8 @@
       "code": "603200",
       "name": "上海洗霸",
       "price": 38.42,
+      "prev_close": 37.63,
+      "pct_chg": 2.1,
       "ma20": 35.33,
       "dist_ma20": 8.76,
       "slope_ma20": -0.67,
@@ -1829,6 +2055,8 @@
       "code": "002009",
       "name": "天奇股份",
       "price": 17.91,
+      "prev_close": 17.81,
+      "pct_chg": 0.56,
       "ma20": 16.74,
       "dist_ma20": 7.0,
       "slope_ma20": -0.9,
@@ -1845,6 +2073,8 @@
       "code": "002031",
       "name": "巨轮智能",
       "price": 5.31,
+      "prev_close": 5.24,
+      "pct_chg": 1.34,
       "ma20": 4.93,
       "dist_ma20": 7.65,
       "slope_ma20": -1.12,
@@ -1861,6 +2091,8 @@
       "code": "000818",
       "name": "航锦科技",
       "price": 13.82,
+      "prev_close": 13.49,
+      "pct_chg": 2.45,
       "ma20": 12.86,
       "dist_ma20": 7.44,
       "slope_ma20": -1.13,
@@ -1877,6 +2109,8 @@
       "code": "002196",
       "name": "方正电机",
       "price": 11.18,
+      "prev_close": 11.12,
+      "pct_chg": 0.54,
       "ma20": 10.49,
       "dist_ma20": 6.62,
       "slope_ma20": -1.64,
@@ -1893,6 +2127,8 @@
       "code": "002353",
       "name": "杰瑞股份",
       "price": 145.85,
+      "prev_close": 145.12,
+      "pct_chg": 0.5,
       "ma20": 135.37,
       "dist_ma20": 7.74,
       "slope_ma20": -2.11,
@@ -1909,6 +2145,8 @@
       "code": "002585",
       "name": "双星新材",
       "price": 9.56,
+      "prev_close": 9.37,
+      "pct_chg": 2.03,
       "ma20": 8.56,
       "dist_ma20": 11.73,
       "slope_ma20": -2.81,
@@ -1925,6 +2163,8 @@
       "code": "605168",
       "name": "三人行",
       "price": 42.27,
+      "prev_close": 40.35,
+      "pct_chg": 4.76,
       "ma20": 36.84,
       "dist_ma20": 14.73,
       "slope_ma20": -3.24,
@@ -1941,6 +2181,8 @@
       "code": "000628",
       "name": "高新发展",
       "price": 38.99,
+      "prev_close": 39.01,
+      "pct_chg": -0.05,
       "ma20": 37.31,
       "dist_ma20": 4.5,
       "slope_ma20": -3.39,
@@ -1957,6 +2199,8 @@
       "code": "002179",
       "name": "中航光电",
       "price": 35.5,
+      "prev_close": 35.46,
+      "pct_chg": 0.11,
       "ma20": 34.13,
       "dist_ma20": 4.03,
       "slope_ma20": -3.4,
@@ -1973,6 +2217,8 @@
       "code": "002859",
       "name": "洁美科技",
       "price": 73.93,
+      "prev_close": 70.51,
+      "pct_chg": 4.85,
       "ma20": 63.88,
       "dist_ma20": 15.74,
       "slope_ma20": -4.52,
@@ -1986,456 +2232,5 @@
       "status": "new"
     }
   ],
-  "broken": [
-    {
-      "code": "002832",
-      "name": "比音勒芬",
-      "status": "broken",
-      "last_price": 24.62,
-      "last_slope": 5.47,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600415",
-      "name": "小商品城",
-      "status": "broken",
-      "last_price": 12.11,
-      "last_slope": 4.86,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000037",
-      "name": "深南电A",
-      "status": "broken",
-      "last_price": 10.01,
-      "last_slope": 4.8,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600403",
-      "name": "大有能源",
-      "status": "broken",
-      "last_price": 6.46,
-      "last_slope": 4.79,
-      "last_date": "2026-08-05",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002891",
-      "name": "中宠股份",
-      "status": "broken",
-      "last_price": 31.01,
-      "last_slope": 3.79,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000729",
-      "name": "燕京啤酒",
-      "status": "broken",
-      "last_price": 12.65,
-      "last_slope": 3.76,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000423",
-      "name": "东阿阿胶",
-      "status": "broken",
-      "last_price": 53.4,
-      "last_slope": 3.62,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "603129",
-      "name": "春风动力",
-      "status": "broken",
-      "last_price": 293.01,
-      "last_slope": 3.53,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002092",
-      "name": "中泰化学",
-      "status": "broken",
-      "last_price": 4.48,
-      "last_slope": 3.46,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000582",
-      "name": "北部湾港",
-      "status": "broken",
-      "last_price": 12.52,
-      "last_slope": 3.31,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600126",
-      "name": "杭钢股份",
-      "status": "broken",
-      "last_price": 6.51,
-      "last_slope": 3.14,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002606",
-      "name": "大连电瓷",
-      "status": "broken",
-      "last_price": 14.41,
-      "last_slope": 3.12,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "601728",
-      "name": "中国电信",
-      "status": "broken",
-      "last_price": 6.18,
-      "last_slope": 3.02,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002966",
-      "name": "苏州银行",
-      "status": "broken",
-      "last_price": 8.18,
-      "last_slope": 2.97,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600298",
-      "name": "安琪酵母",
-      "status": "broken",
-      "last_price": 41.23,
-      "last_slope": 2.96,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600066",
-      "name": "宇通客车",
-      "status": "broken",
-      "last_price": 31.9,
-      "last_slope": 2.75,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600550",
-      "name": "保变电气",
-      "status": "broken",
-      "last_price": 11.81,
-      "last_slope": 2.69,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "601919",
-      "name": "中远海控",
-      "status": "broken",
-      "last_price": 15.43,
-      "last_slope": 2.57,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600519",
-      "name": "贵州茅台",
-      "status": "broken",
-      "last_price": 1309.22,
-      "last_slope": 2.48,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "601717",
-      "name": "中创智领",
-      "status": "broken",
-      "last_price": 15.82,
-      "last_slope": 2.46,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600690",
-      "name": "海尔智家",
-      "status": "broken",
-      "last_price": 21.93,
-      "last_slope": 2.4,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "601816",
-      "name": "京沪高铁",
-      "status": "broken",
-      "last_price": 5.04,
-      "last_slope": 2.39,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002265",
-      "name": "建设工业",
-      "status": "broken",
-      "last_price": 18.98,
-      "last_slope": 2.27,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600486",
-      "name": "扬农化工",
-      "status": "broken",
-      "last_price": 55.13,
-      "last_slope": 2.24,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "601825",
-      "name": "沪农商行",
-      "status": "broken",
-      "last_price": 8.29,
-      "last_slope": 2.17,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "601318",
-      "name": "中国平安",
-      "status": "broken",
-      "last_price": 53.38,
-      "last_slope": 2.16,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002251",
-      "name": "步步高",
-      "status": "broken",
-      "last_price": 3.66,
-      "last_slope": 2.15,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "603327",
-      "name": "福蓉科技",
-      "status": "broken",
-      "last_price": 8.99,
-      "last_slope": 2.08,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600941",
-      "name": "中国移动",
-      "status": "broken",
-      "last_price": 95.5,
-      "last_slope": 2.05,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002074",
-      "name": "国轩高科",
-      "status": "broken",
-      "last_price": 27.69,
-      "last_slope": 1.81,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600967",
-      "name": "内蒙一机",
-      "status": "broken",
-      "last_price": 11.45,
-      "last_slope": 1.78,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "603444",
-      "name": "吉比特",
-      "status": "broken",
-      "last_price": 382.67,
-      "last_slope": 1.75,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000039",
-      "name": "中集集团",
-      "status": "broken",
-      "last_price": 8.58,
-      "last_slope": 1.72,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002044",
-      "name": "美年健康",
-      "status": "broken",
-      "last_price": 4.82,
-      "last_slope": 1.69,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000830",
-      "name": "鲁西化工",
-      "status": "broken",
-      "last_price": 12.77,
-      "last_slope": 1.45,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600089",
-      "name": "特变电工",
-      "status": "broken",
-      "last_price": 21.33,
-      "last_slope": 1.2,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600000",
-      "name": "浦发银行",
-      "status": "broken",
-      "last_price": 9.21,
-      "last_slope": 1.06,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000768",
-      "name": "中航西飞",
-      "status": "broken",
-      "last_price": 20.74,
-      "last_slope": 0.86,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600157",
-      "name": "永泰能源",
-      "status": "broken",
-      "last_price": 1.6,
-      "last_slope": 0.86,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600919",
-      "name": "江苏银行",
-      "status": "broken",
-      "last_price": 11.62,
-      "last_slope": 0.61,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002345",
-      "name": "潮宏基",
-      "status": "broken",
-      "last_price": 10.59,
-      "last_slope": 0.53,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600686",
-      "name": "金龙汽车",
-      "status": "broken",
-      "last_price": 11.75,
-      "last_slope": 0.5,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000601",
-      "name": "韶能股份",
-      "status": "broken",
-      "last_price": 6.62,
-      "last_slope": 0.45,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600885",
-      "name": "宏发股份",
-      "status": "broken",
-      "last_price": 35.41,
-      "last_slope": -0.34,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "600893",
-      "name": "航发动力",
-      "status": "broken",
-      "last_price": 35.97,
-      "last_slope": -0.52,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002757",
-      "name": "南兴股份",
-      "status": "broken",
-      "last_price": 17.68,
-      "last_slope": -0.7,
-      "last_date": "2026-08-06",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002444",
-      "name": "巨星科技",
-      "status": "broken",
-      "last_price": 30.04,
-      "last_slope": -1.56,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "000722",
-      "name": "湖南发展",
-      "status": "broken",
-      "last_price": 13.56,
-      "last_slope": 4.57,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002415",
-      "name": "海康威视",
-      "status": "broken",
-      "last_price": 37.24,
-      "last_slope": 2.55,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    },
-    {
-      "code": "002292",
-      "name": "奥飞娱乐",
-      "status": "broken",
-      "last_price": 8.15,
-      "last_slope": 2.28,
-      "last_date": "2026-08-07",
-      "last_seen": "2026-08-10 00:48:10"
-    }
-  ]
+  "broken": []
 }

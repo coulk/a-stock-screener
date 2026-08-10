@@ -468,10 +468,16 @@ def analyze_stock(code, name, df):
             is_first = False
             break
 
+    # 较上一日涨跌幅（今日收盘 vs 昨日收盘）
+    prev_close = close[-2] if len(close) >= 2 else close[-1]
+    pct_chg = (close[-1] / prev_close - 1) * 100 if prev_close > 0 else 0.0
+
     return {
         'code': str(code).zfill(6),
         'name': name,
         'price': round(float(close[-1]), 2),
+        'prev_close': round(float(prev_close), 2),
+        'pct_chg': round(float(pct_chg), 2),
         'ma20': round(float(ma20_now), 2),
         'dist_ma20': round(dist_pct, 2),
         'slope_ma20': round(slope, 2),

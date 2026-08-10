@@ -107,6 +107,7 @@ const COLS = [
   { key: 'sector', label: '板块', sort: 'str' },
   { key: 'status', label: '状态', sort: 'str' },
   { key: 'price', label: '现价', sort: 'num' },
+  { key: 'pct_chg', label: '涨跌幅%', sort: 'num' },
   { key: 'dist_ma20', label: '距MA20%', sort: 'num' },
   { key: 'slope_ma20', label: 'MA20斜率%', sort: 'num' },
   { key: 'vol_ratio', label: '量比', sort: 'num' },
@@ -243,6 +244,7 @@ function render() {
       <td>${x.sector ? `<span class="tag sector">${x.sector}</span>` : '-'}</td>
       <td>${statusLabel[x.status] || '-'}</td>
       <td>${fmtNum(x.price)}</td>
+      <td class="${x.pct_chg >= 0 ? 'up' : 'down'}">${fmtNum(x.pct_chg)}%</td>
       <td class="${distCls}">${fmtNum(x.dist_ma20)}%</td>
       <td class="${slopeCls}">${fmtNum(x.slope_ma20)}%</td>
       <td class="${volCls}">${fmtNum(x.vol_ratio)}</td>
