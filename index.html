@@ -108,6 +108,7 @@ const COLS = [
   { key: 'status', label: '状态', sort: 'str' },
   { key: 'price', label: '现价', sort: 'num' },
   { key: 'pct_chg', label: '涨跌幅%', sort: 'num' },
+  { key: 'mktcap', label: '总市值(亿)', sort: 'num' },
   { key: 'dist_ma20', label: '距MA20%', sort: 'num' },
   { key: 'slope_ma20', label: 'MA20斜率%', sort: 'num' },
   { key: 'vol_ratio', label: '量比', sort: 'num' },
@@ -177,7 +178,7 @@ function renderChanges() {
 
 function setSort(key) {
   if (sortKey === key) sortDir = -sortDir;
-  else { sortKey = key; sortDir = (key === 'score' || key === 'slope_ma20') ? -1 : 1; }
+  else { sortKey = key; sortDir = (key === 'score' || key === 'slope_ma20' || key === 'mktcap') ? -1 : 1; }
   renderHeader();
   render();
 }
@@ -195,7 +196,7 @@ function filterRows() {
     if (!rows.some(r => String(r.code) === String(b.code))) {
       rows.push({
         code: b.code, name: b.name || '', sector: b.sector || '',
-        status: 'broken', price: b.last_price, dist_ma20: null,
+        status: 'broken', price: b.last_price, mktcap: null, dist_ma20: null,
         slope_ma20: b.last_slope, vol_ratio: null,
         pullback_date: b.last_date, is_first: false, resonance: false, score: null,
       });
@@ -245,6 +246,7 @@ function render() {
       <td>${statusLabel[x.status] || '-'}</td>
       <td>${fmtNum(x.price)}</td>
       <td class="${x.pct_chg >= 0 ? 'up' : 'down'}">${fmtNum(x.pct_chg)}%</td>
+      <td>${x.mktcap ? fmtNum(x.mktcap) : '-'}</td>
       <td class="${distCls}">${fmtNum(x.dist_ma20)}%</td>
       <td class="${slopeCls}">${fmtNum(x.slope_ma20)}%</td>
       <td class="${volCls}">${fmtNum(x.vol_ratio)}</td>

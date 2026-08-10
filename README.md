@@ -47,11 +47,13 @@ python test_logic.py          # 离线验证判定逻辑（不依赖网络）
 
 或手动触发：Actions → 「每日A股20日线回踩筛选」→ Run workflow。
 
-## 较上一日涨跌幅
+## 较上一日涨跌幅 / 总市值
 
-- 结果表中新增 `pct_chg` 字段（今日收盘 vs 昨日收盘涨跌幅 %）与 `prev_close`（昨收）
-- 由 `screener.py` 从日K数据计算（quotes.sina.cn/Yahoo，Actions 海外可用）
-- 前端「涨跌幅%」列红涨绿跌显示，可按该列排序
+- 结果表中 `pct_chg`（今日收盘 vs 昨日收盘涨跌幅 %）与 `prev_close`（昨收），由 `screener.py` 从日K数据计算（quotes.sina.cn/Yahoo，Actions 海外可用）
+- 结果表中 `mktcap`（总市值，**单位：亿元**），由全市场快照直接带出：
+  - 东财源 `f20`、腾讯源 `f[45]*1e8`、新浪源「总市值」，统一换算为亿元
+  - 粗筛 `MIN_MARKET_CAP=5e9`（≥50 亿）一直在用，本次只是把数值透传到结果
+- 前端「涨跌幅%」红涨绿跌、「总市值(亿)」默认从大到小，均支持点击列头排序
 
 ## 本地 MCP 辅助工具
 
@@ -63,10 +65,12 @@ python test_logic.py          # 离线验证判定逻辑（不依赖网络）
 | `stock-mcp-server`（GitHub: 1018053166） | 实时行情/K线/排行榜/股东分析，15 工具 | `node stock-mcp-server/index.js` |
 | `stock-sdk-mcp`（npm, chengzuopeng） | 全市场批量行情/条件选股/板块/技术指标，69 工具 | `npx -y stock-sdk-mcp` |
 
-本地刷新实时涨跌幅（可选，需大陆网络）：
+本地刷新实时涨跌幅与总市值（可选，需大陆网络）：
 ```bash
-python mcp_update.py --market   # 打印三大指数 + 用 stock-mcp-server 刷新 data.json 涨跌幅
+python mcp_update.py --market   # 打印三大指数 + 用 stock-mcp-server 刷新 data.json 涨跌幅与总市值
 ```
+`mcp_update.py` 逐只调用 `get_stock_realtime`，顺带刷新 `price` / `pct_chg` / `prev_close` / `mktcap`（总市值亿元）。
+注意：vendored 的 `stock-mcp-server/fetcher.js` 已修复 fields 列表缺失 `f116,f117` 的 bug（原版请求未带这两个字段，导致 `totalMarketCap` 恒为 0）。
 
 ## 免责声明
 
