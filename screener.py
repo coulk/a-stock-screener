@@ -55,6 +55,7 @@ except Exception:
 KLINE_DAYS = 90           # 拉取K线数量（约90交易日，MA20+斜率+拐点判定足够）
 MIN_AMOUNT = 2e8          # 粗筛：日成交额 >= 2亿（排除流动性差）
 MIN_MARKET_CAP = 5e9      # 粗筛：总市值 >= 50亿（排除仙股，回踩体系偏活跃票）
+MAX_MARKET_CAP = 3e10     # 粗筛：总市值 <= 300亿（聚焦 200亿左右的中盘股）
 MAX_CHG = 9.8             # 粗筛：当日涨跌幅绝对值上限（排除涨停/跌停无法交易）
 TOUCH_PCT = 0.05          # 回踩触及容差：最低价 <= MA20*(1+5%)
 VOL_RATIO = 0.80          # 缩量阈值：回踩日量 < 前5日均量*80%
@@ -394,8 +395,8 @@ def fetch_kline(code, fast=False):
 
 
 # ---------------- 回踩判定 ----------------
-def analyze_stock(code, name, df):
-    """返回判定字典；不满足硬条件返回 None"""
+def analyze_stock(code, name, df, mktcap=0.0):
+    """返回判定字典；不满足硬条件返回 None。mktcap 为快照总市值（元），透传到结果。"""
     close = df['close'].values.astype(float)
     low = df['low'].values.astype(float)
     vol = df['volume'].values.astype(float)
@@ -478,6 +479,7 @@ def analyze_stock(code, name, df):
         'price': round(float(close[-1]), 2),
         'prev_close': round(float(prev_close), 2),
         'pct_chg': round(float(pct_chg), 2),
+        'mktcap': round(float(mktcap or 0) / 1e8, 2),  # 总市值（亿元）
         'ma20': round(float(ma20_now), 2),
         'dist_ma20': round(dist_pct, 2),
         'slope_ma20': round(slope, 2),
@@ -524,6 +526,7 @@ def main():
     parser = argparse.ArgumentParser(description='A股20日线回踩选股（全市场沪深主板）')
     parser.add_argument('--min-amount', type=float, default=MIN_AMOUNT, help='粗筛最小成交额（元）')
     parser.add_argument('--min-market-cap', type=float, default=MIN_MARKET_CAP, help='粗筛最小总市值（元）')
+    parser.add_argument('--max-market-cap', type=float, default=MAX_MARKET_CAP, help='粗筛最大总市值（元），聚焦中盘股')
     parser.add_argument('--max-workers', type=int, default=MAX_WORKERS)
     parser.add_argument('--out', default='data.json')
     parser.add_argument('--candidates', default='',
@@ -563,6 +566,7 @@ def main():
         # 有市值数据则做粗筛压缩候选（加快拉K），无则全主板
         if (cand['mktcap'] > 0).any():
             cand = cand[(cand['mktcap'] >= args.min_market_cap) &
+                        (cand['mktcap'] <= args.max_market_cap) &
                         (cand['amount'] >= args.min_amount) &
                         (cand['chg_pct'].abs() <= MAX_CHG)]
         cand = cand.drop_duplicates(subset='code')
@@ -580,6 +584,7 @@ def main():
         if has_amount:
             cand = cand[(cand['amount'] >= args.min_amount) &
                         (cand['mktcap'] >= args.min_market_cap) &
+                        (cand['mktcap'] <= args.max_market_cap) &
                         (cand['chg_pct'].abs() <= MAX_CHG)]
         else:
             print('⚠️ 市值/成交额数据缺失（clist 降级），跳过市值/成交额粗筛，全主板扫描')
@@ -626,11 +631,12 @@ def main():
 
     # 4) 回踩判定
     name_map = dict(zip(cand['code'], cand['name']))
+    mktcap_map = dict(zip(cand['code'], pd.to_numeric(cand['mktcap'], errors='coerce').fillna(0)))
     results = []
     for code, df in klines.items():
         if df is None or len(df) < 30:
             continue
-        r = analyze_stock(code, name_map.get(code, ''), df)
+        r = analyze_stock(code, name_map.get(code, ''), df, mktcap=mktcap_map.get(code, 0.0))
         if r:
             results.append(r)
 
@@ -708,6 +714,7 @@ def main():
         'params': {
             'min_amount': args.min_amount,
             'min_market_cap': args.min_market_cap,
+            'max_market_cap': args.max_market_cap,
             'touch_pct': TOUCH_PCT,
             'vol_ratio': VOL_RATIO,
             'slope_days': SLOPE_DAYS,
@@ -726,9 +733,9 @@ def main():
     # 控制台摘要
     if results:
         print('\n' + '-' * 72)
-        print(f'{"code":<8}{"name":<10}{"现价":>8}{"距MA20%":>8}{"斜率%":>7}{"量比":>6}  {"回踩日":<12}{"首次":<4}{"共振":<4}{"评分":>6}')
+        print(f'{"code":<8}{"name":<10}{"市值亿":>8}{"现价":>8}{"距MA20%":>8}{"斜率%":>7}{"量比":>6}  {"回踩日":<12}{"首次":<4}{"共振":<4}{"评分":>6}')
         for r in results[:30]:
-            print(f'{r["code"]:<8}{r["name"]:<10}{r["price"]:>8.2f}{r["dist_ma20"]:>8.2f}'
+            print(f'{r["code"]:<8}{r["name"]:<10}{r["mktcap"]:>8.2f}{r["price"]:>8.2f}{r["dist_ma20"]:>8.2f}'
                   f'{r["slope_ma20"]:>7.2f}{r["vol_ratio"]:>6.2f}  {r["pullback_date"]:<12}'
                   f'{"是" if r["is_first"] else "否":<4}{"✓" if r["resonance"] else "":<4}{r["score"]:>6.1f}')
         print('-' * 72)

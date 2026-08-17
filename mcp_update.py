@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 用 stock-mcp-server（GitHub: 1018053166/stock-mcp-server）抓取当日实时行情，
-为 data.json 的结果补充/校验"较上一日涨跌幅"（pct_chg）。
+为 data.json 的结果补充/校验"较上一日涨跌幅"（pct_chg）与总市值（mktcap）。
 
 MCP 工具：get_stock_realtime / batch_get_stocks / get_rank_list / get_market_overview
 数据源：东方财富 push2 接口（需大陆网络；GitHub Actions 海外环境不可用，仅本地使用）。
 
 用法：
-  python mcp_update.py                 # 用 MCP 批量刷新 data.json 中结果的实时涨跌幅
+  python mcp_update.py                 # 用 MCP 批量刷新 data.json 中结果的实时涨跌幅与市值
   python mcp_update.py --market        # 额外打印市场概况（三大指数）
 """
 import os
@@ -33,7 +33,7 @@ def mcp_call(name, args=None, timeout=40):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='用 stock-mcp-server 补充实时涨跌幅')
+    parser = argparse.ArgumentParser(description='用 stock-mcp-server 补充实时涨跌幅与总市值')
     parser.add_argument('--market', action='store_true', help='打印市场概况')
     parser.add_argument('--out', default='data.json')
     args = parser.parse_args()
@@ -61,19 +61,23 @@ def main():
             pct = q.get('changePercent')
             price = q.get('currentPrice')
             prev = q.get('previousClose')
+            tcap = q.get('totalMarketCap')  # 东财总市值（元）
             for r in data.get('results', []):
                 if r['code'] == code:
                     if pct is not None:
                         r['pct_chg'] = round(float(pct), 2)
                         r['price'] = round(float(price), 2) if price else r['price']
                         r['prev_close'] = round(float(prev), 2) if prev else r.get('prev_close')
+                    if tcap:
+                        # 东财 push2 总市值单位为元；data.json 统一存亿元
+                        r['mktcap'] = round(float(tcap) / 1e8, 2)
                     updated += 1
         if (i + 1) % 20 == 0 or i + 1 == len(codes):
             print(f'  {i + 1}/{len(codes)}')
 
     with open(os.path.join(HERE, args.out), 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f'✅ 已刷新 {updated} 只实时涨跌幅 -> {args.out}')
+    print(f'✅ 已刷新 {updated} 只实时涨跌幅/市值 -> {args.out}')
 
 
 if __name__ == '__main__':
