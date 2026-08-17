@@ -46,7 +46,7 @@ export class StockDataFetcher {
       const secid = this.formatStockCode(stockCode);
       const params = {
         secid: secid,
-        fields: 'f57,f58,f43,f44,f45,f46,f47,f48,f49,f50,f51,f52,f60,f107,f152,f161,f162,f163,f164,f165,f168,f169,f170,f171,f177,f292',
+        fields: 'f57,f58,f43,f44,f45,f46,f47,f48,f49,f50,f51,f52,f60,f107,f116,f117,f152,f161,f162,f163,f164,f165,f167,f168,f169,f170,f171,f177,f292',
         ut: 'fa5fd1943c7b386f172d6893dbfba10b',
         fltt: '2',
         invt: '2'

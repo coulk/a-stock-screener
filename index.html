@@ -3,259 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股 20日线回踩选股</title>
+<title>A股20日线回踩选股</title>
 <style>
-  :root {
-    --bg: #0f1419; --card: #1a2129; --border: #2a3441;
-    --text: #e6edf3; --muted: #8b98a5; --accent: #4da3ff;
-    --up: #ef4444; --down: #22c55e; --gold: #f59e0b;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: "Segoe UI", "Microsoft YaHei", sans-serif; padding: 20px; }
-  .container { max-width: 1200px; margin: 0 auto; }
-  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-  h1 { font-size: 22px; }
-  h1 small { color: var(--muted); font-size: 13px; font-weight: normal; margin-left: 10px; }
-  .meta { color: var(--muted); font-size: 13px; }
-  .stats { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
-  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; }
-  .stat b { display: block; font-size: 20px; color: var(--accent); }
-  .stat span { font-size: 12px; color: var(--muted); }
-  .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
-  input, select {
-    background: var(--card); border: 1px solid var(--border); color: var(--text);
-    padding: 7px 12px; border-radius: 6px; font-size: 13px;
-  }
-  .table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--border); border-radius: 10px; }
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; white-space: nowrap; }
-  th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--border); }
-  th { background: #232c37; color: var(--muted); font-weight: 600; cursor: pointer; user-select: none; position: sticky; top: 0; }
-  th:hover { color: var(--text); }
-  th:first-child, td:first-child { text-align: left; }
-  tr:hover td { background: #202932; }
-  td.up { color: var(--up); } td.down { color: var(--down); }
-  .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11.5px; }
-  .tag.first { background: rgba(245,158,11,.15); color: var(--gold); border: 1px solid rgba(245,158,11,.4); }
-  .tag.reso { background: rgba(74,222,128,.12); color: #4ade80; border: 1px solid rgba(74,222,128,.35); }
-  .tag.sector { background: rgba(77,163,255,.12); color: var(--accent); border: 1px solid rgba(77,163,255,.3); }
-  .empty { padding: 40px; text-align: center; color: var(--muted); }
-  .foot { color: var(--muted); font-size: 12px; margin-top: 14px; }
-  .sort-ind { color: var(--accent); }
-  .up-arrow::after { content: " ▲"; color: var(--accent); }
-  .down-arrow::after { content: " ▼"; color: var(--accent); }
-  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; }
-  .panel-title { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 8px; }
-  #changes { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 16px; font-size: 12px; border: 1px solid var(--border); }
-  .chip.new { background: rgba(239,68,68,.12); color: #f87171; border-color: rgba(239,68,68,.4); }
-  .chip.broken { background: rgba(34,197,94,.12); color: #4ade80; border-color: rgba(34,197,94,.4); }
-  .chip b { font-weight: 700; }
-  .tag.status-new { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.4); }
-  .tag.status-kept { background: rgba(148,163,184,.12); color: #94a3b8; border: 1px solid rgba(148,163,184,.3); }
-  .tag.status-broken { background: rgba(34,197,94,.15); color: #4ade80; border: 1px solid rgba(34,197,94,.4); }
+:root{--bg:#0f1419;--card:#1a2129;--border:#2a3441;--text:#e6edf3;--muted:#8b98a5;--accent:#4da3ff;--up:#ef4444;--down:#22c55e;--gold:#f59e0b}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei",sans-serif;padding:20px}.container{max-width:1400px;margin:auto}header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:16px}h1{font-size:22px}h1 small{font-size:13px;font-weight:normal;margin-left:10px}.meta,.foot{color:var(--muted);font-size:13px}.stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 16px}.stat b{display:block;font-size:20px;color:var(--accent)}.stat span{font-size:12px;color:var(--muted)}.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}input,select{background:var(--card);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:6px;font-size:13px}.table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:13.5px;white-space:nowrap}th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--border)}th{background:#232c37;color:var(--muted);cursor:pointer;user-select:none;position:sticky;top:0}th:first-child,td:first-child{text-align:left}tr:hover td{background:#202932}.up{color:var(--up)}.down{color:var(--down)}.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11.5px}.tag.first{background:#f59e0b26;color:var(--gold)}.tag.reso{background:#4ade8020;color:#4ade80}.tag.sector{background:#4da3ff20;color:var(--accent)}.empty{text-align:center;padding:40px;color:var(--muted)}.foot{margin-top:14px}
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <h1>📈 A股 20日线回踩选股<small>沪深主板 · 每日收盘后更新</small></h1>
-    <div class="meta" id="meta"></div>
-  </header>
-
-  <div class="stats" id="stats"></div>
-
-  <div class="panel" id="panel">
-    <div class="panel-title">📣 今日变化</div>
-    <div id="changes"></div>
-  </div>
-
-  <div class="controls">
-    <input type="text" id="search" placeholder="搜索代码/名称/板块...">
-    <select id="firstFilter">
-      <option value="">全部回踩</option>
-      <option value="first">仅第一次回踩</option>
-      <option value="nonfirst">非第一次</option>
-    </select>
-    <select id="resoFilter">
-      <option value="">全部</option>
-      <option value="yes">仅板块共振</option>
-    </select>
-    <select id="statusFilter">
-      <option value="">全部状态</option>
-      <option value="new">➕ 新增</option>
-      <option value="kept">持续</option>
-      <option value="broken">➖ 趋势破坏</option>
-    </select>
-    <span class="meta" id="count"></span>
-  </div>
-
-  <div class="table-wrap">
-    <table id="tbl">
-      <thead><tr id="thead"></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <div class="empty" id="empty" style="display:none">暂无符合条件的股票（或数据尚未生成）</div>
-  </div>
-
-  <div class="foot" id="foot"></div>
+<header><h1>📈 A股20日线回踩选股<small class="meta">沪深主板 · 每日收盘后更新</small></h1><div class="meta" id="meta"></div></header>
+<div class="stats" id="stats"></div>
+<div class="controls">
+<input type="text" id="search" placeholder="搜索代码/名称/板块..." autocomplete="off">
+<select id="capFilter"><option value="">全部市值</option><option value="50-300">总市值50亿～300亿（200亿左右）</option><option value="50-250">总市值50亿～250亿</option><option value="150-250">总市值150亿～250亿</option></select>
+<select id="firstFilter"><option value="">全部回踩</option><option value="first">仅第一次回踩</option><option value="nonfirst">非第一次</option></select>
+<select id="resoFilter"><option value="">全部板块</option><option value="yes">仅板块共振</option></select>
+<select id="statusFilter"><option value="">全部状态</option><option value="new">新增</option><option value="kept">持续</option><option value="broken">趋势破坏</option></select>
+<span class="meta" id="count"></span>
 </div>
-
+<div class="table-wrap"><table><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table><div class="empty" id="empty" style="display:none">暂无符合条件的股票</div></div>
+<div class="foot" id="foot"></div>
+</div>
 <script>
-const COLS = [
-  { key: 'code', label: '代码', sort: 'str' },
-  { key: 'name', label: '名称', sort: 'str' },
-  { key: 'sector', label: '板块', sort: 'str' },
-  { key: 'status', label: '状态', sort: 'str' },
-  { key: 'price', label: '现价', sort: 'num' },
-  { key: 'pct_chg', label: '涨跌幅%', sort: 'num' },
-  { key: 'dist_ma20', label: '距MA20%', sort: 'num' },
-  { key: 'slope_ma20', label: 'MA20斜率%', sort: 'num' },
-  { key: 'vol_ratio', label: '量比', sort: 'num' },
-  { key: 'pullback_date', label: '回踩日', sort: 'str' },
-  { key: 'is_first', label: '首次回踩', sort: 'bool' },
-  { key: 'resonance', label: '板块共振', sort: 'bool' },
-  { key: 'score', label: '评分', sort: 'num' },
+const COLS=[
+ ['code','代码','str'],['name','名称','str'],['sector','板块','str'],['status','状态','str'],
+ ['price','现价','num'],['pct_chg','涨跌幅%','num'],['mktcap','总市值(亿)','num'],['dist_ma20','距MA20%','num'],
+ ['slope_ma20','MA20斜率%','num'],['vol_ratio','量比','num'],['pullback_date','回踩日','str'],
+ ['is_first','首次回踩','bool'],['resonance','板块共振','bool'],['score','评分','num']
 ];
-
-let data = null;
-let sortKey = 'score', sortDir = -1;
-
-async function load() {
-  try {
-    const res = await fetch('data.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error(res.status);
-    data = await res.json();
-  } catch (e) {
-    document.getElementById('meta').textContent = '⚠️ 未找到 data.json（等待每日更新任务生成）';
-    document.getElementById('empty').style.display = 'block';
-    return;
-  }
-  renderHeader();
-  renderStats();
-  render();
+let data=null,sortKey='score',sortDir=-1;
+const $=id=>document.getElementById(id);
+function fmt(v,d=2){return v===null||v===undefined||v===''||Number.isNaN(Number(v))?'-':Number(v).toFixed(d)}
+function renderHeader(){ $('thead').innerHTML=COLS.map(c=>`<th data-key="${c[0]}">${c[1]}${sortKey===c[0]?(sortDir<0?' ▼':' ▲'):''}</th>`).join('');document.querySelectorAll('#thead th').forEach(th=>th.addEventListener('click',()=>setSort(th.dataset.key))); }
+function setSort(k){if(sortKey===k)sortDir=-sortDir;else{sortKey=k;sortDir=['score','slope_ma20','mktcap'].includes(k)?-1:1}renderHeader();render()}
+function getRows(){
+ const query=$('search').value.trim().toLowerCase(),cap=$('capFilter').value,first=$('firstFilter').value,reso=$('resoFilter').value,status=$('statusFilter').value;
+ return (data.results||[]).map(x=>({...x,status:x.status||'kept'})).filter(x=>{
+  const text=[x.code,x.name,x.sector].map(v=>String(v??'').toLowerCase()).join(' ');
+  const capOk=!cap||(cap==='50-300'&&Number(x.mktcap)>=50&&Number(x.mktcap)<=300)||(cap==='50-250'&&Number(x.mktcap)>=50&&Number(x.mktcap)<=250)||(cap==='150-250'&&Number(x.mktcap)>=150&&Number(x.mktcap)<=250);
+  const firstOk=!first||(first==='first'?x.is_first:!x.is_first);
+  const resoOk=!reso||Boolean(x.resonance),statusOk=!status||x.status===status;
+  return capOk&&firstOk&&resoOk&&statusOk&&(!query||text.includes(query));
+ });
 }
-
-function renderHeader() {
-  const tr = document.getElementById('thead');
-  tr.innerHTML = COLS.map(c =>
-    `<th data-key="${c.key}" onclick="setSort('${c.key}')">${c.label}${sortKey === c.key ? (sortDir < 0 ? '<span class="sort-ind">▼</span>' : '<span class="sort-ind">▲</span>') : ''}</th>`
-  ).join('');
+function render(){
+ const rs=getRows();$('count').textContent=`显示 ${rs.length} / ${(data.results||[]).length} 只`;$('empty').style.display=rs.length?'none':'block';
+ rs.sort((a,b)=>{let x=a[sortKey],y=b[sortKey];if(['is_first','resonance'].includes(sortKey)){x=x?1:0;y=y?1:0}else if(typeof x==='string'){x=x.toLowerCase();y=String(y??'').toLowerCase()}else{x=Number(x??-Infinity);y=Number(y??-Infinity)}return x<y?-sortDir:x>y?sortDir:0});
+ const statusLabel={new:'➕新增',kept:'持续',broken:'➖破坏'};
+ $('tbody').innerHTML=rs.map(x=>`<tr><td>${x.code??'-'}</td><td>${x.name||''}</td><td>${x.sector?`<span class="tag sector">${x.sector}</span>`:'-'}</td><td>${statusLabel[x.status]||'-'}</td><td>${fmt(x.price)}</td><td class="${Number(x.pct_chg)>=0?'up':'down'}">${fmt(x.pct_chg)}%</td><td>${fmt(x.mktcap)}</td><td>${fmt(x.dist_ma20)}%</td><td>${fmt(x.slope_ma20)}%</td><td>${fmt(x.vol_ratio)}</td><td>${x.pullback_date||'-'}</td><td>${x.is_first?'<span class="tag first">首次</span>':'-'}</td><td>${x.resonance?'<span class="tag reso">共振</span>':'-'}</td><td><b>${fmt(x.score,1)}</b></td></tr>`).join('');
 }
-
-function renderStats() {
-  const r = data.results || [];
-  const first = r.filter(x => x.is_first).length;
-  const reso = r.filter(x => x.resonance).length;
-  const nNew = data.new_count ?? r.filter(x => x.status === 'new').length;
-  const nBroken = data.broken_count ?? (data.broken || []).length;
-  document.getElementById('stats').innerHTML = `
-    <div class="stat"><b>${r.length}</b><span>命中总数</span></div>
-    <div class="stat"><b style="color:#f87171">+${nNew}</b><span>今日新增</span></div>
-    <div class="stat"><b style="color:#4ade80">-${nBroken}</b><span>趋势破坏</span></div>
-    <div class="stat"><b>${first}</b><span>第一次回踩</span></div>
-    <div class="stat"><b>${reso}</b><span>板块共振</span></div>
-  `;
-  document.getElementById('meta').textContent =
-    `生成时间：${data.generated_at ?? '-'} ｜ 上次：${data.prev_date || '-'} ｜ 数据源：quotes.sina.cn + Yahoo`;
-  document.getElementById('foot').textContent =
-    `筛选规则：MA20向上或刚拐头 ＋ 近3日回踩20日线附近 ＋ 收盘确认收回MA20上方 ＋ 回踩日缩量(<5日均量×80%) ＋ 板块共振加分。` +
-    `➕新增=今日新命中；➖趋势破坏=上次命中今日失效。⚠️ 技术面初筛，非投资建议。`;
-  renderChanges();
-}
-
-function renderChanges() {
-  const box = document.getElementById('changes');
-  const r = data.results || [];
-  const broken = data.broken || [];
-  if (!r.length && !broken.length) { box.innerHTML = '<span class="meta">暂无变化数据</span>'; return; }
-  const newChips = r.filter(x => x.status === 'new').map(x =>
-    `<span class="chip new">➕ <b>${x.code}</b> ${x.name || ''}</span>`).join('');
-  const brokenChips = broken.map(b =>
-    `<span class="chip broken">➖ <b>${b.code}</b> ${b.name || ''}（${(b.last_date || '').slice(5)}）</span>`).join('');
-  box.innerHTML = (newChips || '<span class="meta">无新增</span>') + ' &nbsp; ' + (brokenChips || '<span class="meta">无破坏</span>');
-}
-
-function setSort(key) {
-  if (sortKey === key) sortDir = -sortDir;
-  else { sortKey = key; sortDir = (key === 'score' || key === 'slope_ma20') ? -1 : 1; }
-  renderHeader();
-  render();
-}
-
-function filterRows() {
-  if (!data) return [];
-  const q = document.getElementById('search').value.trim().toLowerCase();
-  const f1 = document.getElementById('firstFilter').value;
-  const f2 = document.getElementById('resoFilter').value;
-  const f3 = document.getElementById('statusFilter').value;
-  const brokenCodes = new Set((data.broken || []).map(b => String(b.code)));
-  const rows = (data.results || []).map(x => ({ ...x, status: x.status || 'kept' }));
-  // 合并 broken 记录为虚拟行（status=broken）
-  (data.broken || []).forEach(b => {
-    if (!rows.some(r => String(r.code) === String(b.code))) {
-      rows.push({
-        code: b.code, name: b.name || '', sector: b.sector || '',
-        status: 'broken', price: b.last_price, dist_ma20: null,
-        slope_ma20: b.last_slope, vol_ratio: null,
-        pullback_date: b.last_date, is_first: false, resonance: false, score: null,
-      });
-    }
-  });
-  return rows.filter(x => {
-    if (f1 === 'first' && !x.is_first) return false;
-    if (f1 === 'nonfirst' && x.is_first) return false;
-    if (f2 === 'yes' && !x.resonance) return false;
-    if (f3 && x.status !== f3) return false;
-    if (q && !(String(x.code).includes(q) || String(x.name).toLowerCase().includes(q) || String(x.sector || '').toLowerCase().includes(q))) return false;
-    return true;
-  });
-}
-
-function fmtNum(v, digits = 2) {
-  return (v === null || v === undefined || isNaN(v)) ? '-' : Number(v).toFixed(digits);
-}
-
-function render() {
-  const rows = filterRows();
-  document.getElementById('count').textContent = `显示 ${rows.length} / ${(data.results || []).length} 只`;
-  const tbody = document.getElementById('tbody');
-  const empty = document.getElementById('empty');
-  if (!rows.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-
-  const sorted = [...rows].sort((a, b) => {
-    let va = a[sortKey], vb = b[sortKey];
-    if (sortKey === 'is_first' || sortKey === 'resonance') { va = va ? 1 : 0; vb = vb ? 1 : 0; }
-    else if (sortKey === 'status') { const o = {new: 0, kept: 1, broken: 2}; va = o[a.status] ?? 3; vb = o[b.status] ?? 3; }
-    else if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
-    if (va < vb) return -1 * sortDir;
-    if (va > vb) return 1 * sortDir;
-    return 0;
-  });
-
-  const statusLabel = { new: '<span class="tag status-new">➕新增</span>', kept: '<span class="tag status-kept">持续</span>', broken: '<span class="tag status-broken">➖破坏</span>' };
-
-  tbody.innerHTML = sorted.map(x => {
-    const up = x.dist_ma20 >= 0, distCls = up ? 'up' : 'down';
-    const slopeCls = x.slope_ma20 >= 0 ? 'up' : 'down';
-    const volCls = x.vol_ratio <= 0.8 ? 'up' : 'down';
-    return `<tr>
-      <td>${x.code}</td><td>${x.name || ''}</td>
-      <td>${x.sector ? `<span class="tag sector">${x.sector}</span>` : '-'}</td>
-      <td>${statusLabel[x.status] || '-'}</td>
-      <td>${fmtNum(x.price)}</td>
-      <td class="${x.pct_chg >= 0 ? 'up' : 'down'}">${fmtNum(x.pct_chg)}%</td>
-      <td class="${distCls}">${fmtNum(x.dist_ma20)}%</td>
-      <td class="${slopeCls}">${fmtNum(x.slope_ma20)}%</td>
-      <td class="${volCls}">${fmtNum(x.vol_ratio)}</td>
-      <td>${x.pullback_date || '-'}</td>
-      <td>${x.is_first ? '<span class="tag first">首次</span>' : '-'}</td>
-      <td>${x.resonance ? '<span class="tag reso">共振</span>' : '-'}</td>
-      <td><b>${fmtNum(x.score, 1)}</b></td>
-    </tr>`;
-  }).join('');
-}
-
+function renderStats(){const r=data.results||[];$('stats').innerHTML=`<div class="stat"><b>${r.length}</b><span>命中总数</span></div><div class="stat"><b>${r.filter(x=>x.is_first).length}</b><span>第一次回踩</span></div><div class="stat"><b>${r.filter(x=>x.resonance).length}</b><span>板块共振</span></div>`;$('meta').textContent=`生成时间：${data.generated_at||'-'}`;$('foot').textContent='筛选规则：MA20回踩、缩量、收盘确认；支持代码/名称/板块搜索及总市值50亿～300亿元筛选。技术面初筛，非投资建议。'}
+async function load(){try{const r=await fetch('data.json',{cache:'no-store'});if(!r.ok)throw Error();data=await r.json();renderStats();renderHeader();render()}catch(e){$('empty').style.display='block';$('meta').textContent='⚠️ 未找到 data.json'}}
+// 搜索使用 input 事件实时刷新；下拉框使用 change 事件刷新，避免依赖浏览器的全局 ID 变量。
+$('search').addEventListener('input',render);
+['capFilter','firstFilter','resoFilter','statusFilter'].forEach(id=>$(id).addEventListener('change',render));
 load();
 </script>
 </body>

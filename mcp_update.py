@@ -61,12 +61,16 @@ def main():
             pct = q.get('changePercent')
             price = q.get('currentPrice')
             prev = q.get('previousClose')
+            tcap = q.get('totalMarketCap')  # 东财总市值（元）
             for r in data.get('results', []):
                 if r['code'] == code:
                     if pct is not None:
                         r['pct_chg'] = round(float(pct), 2)
                         r['price'] = round(float(price), 2) if price else r['price']
                         r['prev_close'] = round(float(prev), 2) if prev else r.get('prev_close')
+                    if tcap:
+                        # 东财 push2 总市值单位为元；data.json 统一存亿元
+                        r['mktcap'] = round(float(tcap) / 1e8, 2)
                     updated += 1
         if (i + 1) % 20 == 0 or i + 1 == len(codes):
             print(f'  {i + 1}/{len(codes)}')

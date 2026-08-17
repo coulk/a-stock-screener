@@ -394,8 +394,8 @@ def fetch_kline(code, fast=False):
 
 
 # ---------------- 回踩判定 ----------------
-def analyze_stock(code, name, df):
-    """返回判定字典；不满足硬条件返回 None"""
+def analyze_stock(code, name, df, mktcap=0.0):
+    """返回判定字典；不满足硬条件返回 None。mktcap 为快照总市值（元），透传到结果。"""
     close = df['close'].values.astype(float)
     low = df['low'].values.astype(float)
     vol = df['volume'].values.astype(float)
@@ -478,6 +478,7 @@ def analyze_stock(code, name, df):
         'price': round(float(close[-1]), 2),
         'prev_close': round(float(prev_close), 2),
         'pct_chg': round(float(pct_chg), 2),
+        'mktcap': round(float(mktcap or 0) / 1e8, 2),  # 总市值（亿元）
         'ma20': round(float(ma20_now), 2),
         'dist_ma20': round(dist_pct, 2),
         'slope_ma20': round(slope, 2),
@@ -626,11 +627,12 @@ def main():
 
     # 4) 回踩判定
     name_map = dict(zip(cand['code'], cand['name']))
+    mktcap_map = dict(zip(cand['code'], pd.to_numeric(cand['mktcap'], errors='coerce').fillna(0)))
     results = []
     for code, df in klines.items():
         if df is None or len(df) < 30:
             continue
-        r = analyze_stock(code, name_map.get(code, ''), df)
+        r = analyze_stock(code, name_map.get(code, ''), df, mktcap=mktcap_map.get(code, 0.0))
         if r:
             results.append(r)
 
