@@ -54,8 +54,8 @@ except Exception:
 # ---------------- 参数 ----------------
 KLINE_DAYS = 90           # 拉取K线数量（约90交易日，MA20+斜率+拐点判定足够）
 MIN_AMOUNT = 2e8          # 粗筛：日成交额 >= 2亿（排除流动性差）
-MIN_MARKET_CAP = 5e9      # 粗筛：总市值 >= 50亿（排除仙股，回踩体系偏活跃票）
-MAX_MARKET_CAP = 3e10     # 粗筛：总市值 <= 300亿（聚焦 200亿左右的中盘股）
+MIN_MARKET_CAP = 5e9      # 粗筛：总市值 >= 50亿（排除仙股）
+MAX_MARKET_CAP = 1e15     # 粗筛：市值上限（默认无限大=不设上限，300亿以上也纳入）
 MAX_CHG = 9.8             # 粗筛：当日涨跌幅绝对值上限（排除涨停/跌停无法交易）
 TOUCH_PCT = 0.05          # 回踩触及容差：最低价 <= MA20*(1+5%)
 VOL_RATIO = 0.80          # 缩量阈值：回踩日量 < 前5日均量*80%
@@ -526,7 +526,7 @@ def main():
     parser = argparse.ArgumentParser(description='A股20日线回踩选股（全市场沪深主板）')
     parser.add_argument('--min-amount', type=float, default=MIN_AMOUNT, help='粗筛最小成交额（元）')
     parser.add_argument('--min-market-cap', type=float, default=MIN_MARKET_CAP, help='粗筛最小总市值（元）')
-    parser.add_argument('--max-market-cap', type=float, default=MAX_MARKET_CAP, help='粗筛最大总市值（元），聚焦中盘股')
+    parser.add_argument('--max-market-cap', type=float, default=MAX_MARKET_CAP, help='粗筛最大总市值（元），默认不设上限')
     parser.add_argument('--max-workers', type=int, default=MAX_WORKERS)
     parser.add_argument('--out', default='data.json')
     parser.add_argument('--candidates', default='',
