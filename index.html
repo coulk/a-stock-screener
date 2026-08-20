@@ -15,7 +15,7 @@
 <div class="stats" id="stats"></div>
 <div class="controls">
 <input type="text" id="search" placeholder="搜索代码/名称/板块/概念..." autocomplete="off">
-<select id="capFilter"><option value="">全部市值</option><option value="50-300">总市值50亿～300亿（200亿左右）</option><option value="50-250">总市值50亿～250亿</option><option value="150-250">总市值150亿～250亿</option></select>
+<select id="capFilter"><option value="">全部市值</option><option value="50-300">总市值50亿～300亿</option><option value="300-600">总市值300亿～600亿</option><option value="600-1000">总市值600亿～1000亿</option><option value="1000+">总市值1000亿以上</option></select>
 <select id="firstFilter"><option value="">全部回踩</option><option value="first">仅第一次回踩</option><option value="nonfirst">非第一次</option></select>
 <select id="resoFilter"><option value="">全部板块</option><option value="yes">仅板块共振</option></select>
 <select id="statusFilter"><option value="">全部状态</option><option value="new">新增</option><option value="kept">持续</option><option value="broken">趋势破坏</option></select>
@@ -36,14 +36,22 @@ const $=id=>document.getElementById(id);
 function fmt(v,d=2){return v===null||v===undefined||v===''||Number.isNaN(Number(v))?'-':Number(v).toFixed(d)}
 function renderHeader(){const head=$('thead');head.innerHTML=COLS.map(c=>`<th data-key="${c[0]}">${c[1]}${sortKey===c[0]?(sortDir<0?' ▼':' ▲'):''}</th>`).join('');head.querySelectorAll('th').forEach(th=>th.addEventListener('click',()=>setSort(th.dataset.key)))}
 function setSort(k){if(sortKey===k)sortDir=-sortDir;else{sortKey=k;sortDir=['score','slope_ma20','mktcap'].includes(k)?-1:1}renderHeader();render()}
+function capOk(capValue,cap){
+ if(!cap)return true;
+ const v=Number(capValue);
+ if(cap==='50-300')return v>=50&&v<=300;
+ if(cap==='300-600')return v>300&&v<=600;
+ if(cap==='600-1000')return v>600&&v<=1000;
+ if(cap==='1000+')return v>1000;
+ return true;
+}
 function getRows(){
  const query=$('search').value.trim().toLowerCase(),cap=$('capFilter').value,first=$('firstFilter').value,reso=$('resoFilter').value,status=$('statusFilter').value;
  return (data.results||[]).map(x=>({...x,status:x.status||'kept'})).filter(x=>{
   const concepts=(x.concepts||[]).join(' ');
   const text=[x.code,x.name,x.sector,x.region,concepts].map(v=>String(v??'').toLowerCase()).join(' ');
-  const capValue=Number(x.mktcap),capOk=!cap||(cap==='50-300'&&capValue>=50&&capValue<=300)||(cap==='50-250'&&capValue>=50&&capValue<=250)||(cap==='150-250'&&capValue>=150&&capValue<=250);
   const firstOk=!first||(first==='first'?Boolean(x.is_first):!Boolean(x.is_first));
-  return capOk&&firstOk&&(!reso||Boolean(x.resonance))&&(!status||x.status===status)&&(!query||text.includes(query));
+  return capOk(x.mktcap,cap)&&firstOk&&(!reso||Boolean(x.resonance))&&(!status||x.status===status)&&(!query||text.includes(query));
  });
 }
 function render(){
@@ -55,7 +63,7 @@ function render(){
   return `<tr><td>${x.code??'-'}</td><td>${x.name||''}</td><td>${sectorHtml}</td><td>${labels[x.status]||'-'}</td><td>${fmt(x.price)}</td><td class="${Number(x.pct_chg)>=0?'up':'down'}">${fmt(x.pct_chg)}%</td><td>${fmt(x.mktcap)}</td><td>${fmt(x.dist_ma20)}%</td><td>${fmt(x.slope_ma20)}%</td><td>${fmt(x.vol_ratio)}</td><td>${x.pullback_date||'-'}</td><td>${x.is_first?'<span class="tag first">首次</span>':'-'}</td><td>${x.resonance?'<span class="tag reso">共振</span>':'-'}</td><td><b>${fmt(x.score,1)}</b></td></tr>`;
  }).join('');
 }
-function renderStats(){const r=data.results||[];$('stats').innerHTML=`<div class="stat"><b>${r.length}</b><span>命中总数</span></div><div class="stat"><b>${r.filter(x=>x.is_first).length}</b><span>第一次回踩</span></div><div class="stat"><b>${r.filter(x=>x.resonance).length}</b><span>板块共振</span></div>`;$('meta').textContent=`生成时间：${data.generated_at||'-'}｜数据源：本地东财快照+Actions`;$('foot').textContent='筛选规则：MA20回踩、缩量、收盘确认；市值 50亿～300亿；行业板块鼠标悬停显示概念。技术面初筛，非投资建议。'}
+function renderStats(){const r=data.results||[];$('stats').innerHTML=`<div class="stat"><b>${r.length}</b><span>命中总数</span></div><div class="stat"><b>${r.filter(x=>x.is_first).length}</b><span>第一次回踩</span></div><div class="stat"><b>${r.filter(x=>x.resonance).length}</b><span>板块共振</span></div>`;$('meta').textContent=`生成时间：${data.generated_at||'-'}｜数据源：本地东财快照+Actions`;$('foot').textContent='筛选规则：MA20回踩、缩量、收盘确认；市值 50亿以上，可分段筛选。行业板块鼠标悬停显示概念。技术面初筛，非投资建议。'}
 async function load(){try{const response=await fetch('data.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('data.json '+response.status);data=await response.json();renderStats();renderHeader();render()}catch(e){$('empty').style.display='block';$('meta').textContent='⚠️ 数据加载失败：'+e.message;console.error(e)}}
 $('search').addEventListener('input',render);['capFilter','firstFilter','resoFilter','statusFilter'].forEach(id=>$(id).addEventListener('change',render));load();
 </script>
