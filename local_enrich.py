@@ -19,7 +19,7 @@ for k in ['http_proxy', 'https_proxy', 'HTTP_PROXY', 'HTTPS_PROXY', 'ALL_PROXY',
 os.environ['NO_PROXY'] = '*'
 
 SERVER = os.environ.get('LOCAL_QUOTE_SERVER', 'http://127.0.0.1:8910')
-MIN_CAP, MAX_CAP = 50.0, 300.0  # 亿元，后端过滤 50亿～300亿
+MIN_CAP, MAX_CAP = 50.0, float('inf')  # 亿元，仅保留下限 50亿，不设上限（300亿以上也纳入）
 
 
 def enrich(codes, batch=50):
